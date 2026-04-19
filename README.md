@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Supabase setup
+
+1. Copy `.env.example` to `.env.local`.
+2. Fill in `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+3. Run `npm run dev`.
+
+Supabase helpers are available in `lib/supabase/server.js` and `lib/supabase/browser.js`.
+
 ## Getting Started
 
 First, run the development server:
