@@ -5,7 +5,7 @@ import Footer from "@/components/common/Footer";
 export default async function Home() {
   const hasSupabaseEnv =
     Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
-    Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    Boolean(process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
 
   let authState = "Configure your Supabase environment variables to continue.";
 
@@ -60,8 +60,8 @@ export default async function Home() {
 
           <div className="rounded-3xl border border-teal-500/20 bg-teal-500/10 p-5 text-sm leading-7 text-teal-100">
             Next step: create a `.env.local` file with your Supabase project URL
-            and anon key, then build routes or server actions on top of the
-            helpers in `lib/supabase`.
+            and publishable key, then build routes or server actions on top of
+            the helpers in `lib/supabase`.
           </div>
         </div>
       </section>
