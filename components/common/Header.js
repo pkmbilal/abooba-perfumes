@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Search, ShoppingCart } from "lucide-react";
 import { useCart } from "@/components/cart/CartProvider";
+import AuthSessionLinks from "@/components/auth/AuthSessionLinks";
 
 export default function Header() {
   const { itemCount } = useCart();
@@ -26,7 +27,7 @@ export default function Header() {
         {/* Center: Menu */}
         <nav className="hidden md:flex items-center gap-8">
           <Link
-            href="/shop"
+            href="/products"
             className="text-md font-semibold text-gray-700 transition hover:text-black"
           >
             Shop
@@ -47,6 +48,10 @@ export default function Header() {
 
         {/* Right: Icons */}
         <div className="flex items-center gap-4">
+          <div className="hidden md:flex">
+            <AuthSessionLinks />
+          </div>
+
           <button
             type="button"
             aria-label="Search"
@@ -65,6 +70,17 @@ export default function Header() {
               {itemCount}
             </span>
           </Link>
+        </div>
+      </div>
+
+      <div className="border-t border-gray-100 px-4 py-3 md:hidden">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 text-sm font-semibold text-gray-700">
+          <div className="flex items-center gap-4">
+            <Link href="/products" className="transition hover:text-black">
+              Shop
+            </Link>
+          </div>
+          <AuthSessionLinks />
         </div>
       </div>
     </header>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AddToCartButton from "@/components/cart/AddToCartButton";
+import FavoriteButton from "@/components/products/FavoriteButton";
 import {
   buildMeta,
   formatPrice,
@@ -13,11 +14,16 @@ export default function ProductCard({ product }) {
 
   return (
     <article className="group overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-[0_24px_80px_-32px_rgba(15,118,110,0.28)] transition-transform duration-300 hover:-translate-y-1 dark:border-stone-800 dark:bg-stone-950">
-      <Link
-        href={`/products/${product.slug}`}
-        className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-4 focus-visible:ring-offset-stone-100 dark:focus-visible:ring-offset-stone-950"
-      >
-        <div className="relative aspect-[4/3] overflow-hidden border-b border-stone-200 bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.38),_transparent_48%),linear-gradient(135deg,_#134e4a_0%,_#0c0a09_52%,_#1c1917_100%)] dark:border-stone-800">
+      <div className="relative">
+        <FavoriteButton
+          productId={product.id}
+          initialIsFavorite={Boolean(product.is_favorite)}
+        />
+        <Link
+          href={`/products/${product.slug}`}
+          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-4 focus-visible:ring-offset-stone-100 dark:focus-visible:ring-offset-stone-950"
+        >
+          <div className="relative aspect-[4/3] overflow-hidden border-b border-stone-200 bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.38),_transparent_48%),linear-gradient(135deg,_#134e4a_0%,_#0c0a09_52%,_#1c1917_100%)] dark:border-stone-800">
           {primaryImage ? (
             <Image
               src={primaryImage.image_url}
@@ -41,8 +47,9 @@ export default function ProductCard({ product }) {
                 "A refined fragrance built for daily wear and special evenings."}
             </p>
           </div>
-        </div>
-      </Link>
+          </div>
+        </Link>
+      </div>
 
       <div className="space-y-5 px-6 py-6">
         <div className="flex flex-wrap gap-2">

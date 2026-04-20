@@ -1,9 +1,11 @@
+import Header from "@/components/common/Header";
 import { createSupabaseServerClient } from "../lib/supabase/server";
+import Footer from "@/components/common/Footer";
 
 export default async function Home() {
   const hasSupabaseEnv =
     Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
-    Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    Boolean(process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
 
   let authState = "Configure your Supabase environment variables to continue.";
 
@@ -19,6 +21,8 @@ export default async function Home() {
   }
 
   return (
+    <>
+    <Header />
     <main className="flex min-h-screen items-center justify-center bg-stone-950 px-6 py-16 text-stone-50">
       <section className="w-full max-w-3xl rounded-[2rem] border border-stone-800 bg-stone-900/80 p-8 shadow-2xl shadow-black/30 sm:p-12">
         <div className="space-y-8">
@@ -56,11 +60,13 @@ export default async function Home() {
 
           <div className="rounded-3xl border border-teal-500/20 bg-teal-500/10 p-5 text-sm leading-7 text-teal-100">
             Next step: create a `.env.local` file with your Supabase project URL
-            and anon key, then build routes or server actions on top of the
-            helpers in `lib/supabase`.
+            and publishable key, then build routes or server actions on top of
+            the helpers in `lib/supabase`.
           </div>
         </div>
       </section>
     </main>
+    <Footer />
+</>
   );
 }
