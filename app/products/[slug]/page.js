@@ -8,6 +8,9 @@ import {
   getPrimaryImage,
 } from "@/components/products/product-utils";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import Footer from "@/components/common/Footer";
+import Head from "next/head";
+import Header from "@/components/common/Header";
 
 function splitNotes(notes) {
   if (!notes) {
@@ -89,16 +92,10 @@ export default async function ProductDetailsPage(props) {
   const baseNotes = splitNotes(product.base_notes);
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.18),_transparent_22%),linear-gradient(180deg,_#f2fbf9_0%,_#f5f5f4_52%,_#fafaf9_100%)] px-6 py-24 dark:bg-[linear-gradient(180deg,_#0c0a09_0%,_#111827_100%)]">
+    <>
+    <Header />
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.18),_transparent_22%),linear-gradient(180deg,_#f2fbf9_0%,_#f5f5f4_52%,_#fafaf9_100%)] px-6 py-14 dark:bg-[linear-gradient(180deg,_#0c0a09_0%,_#111827_100%)]">
       <section className="mx-auto max-w-6xl">
-        <Link
-          href="/products"
-          className="inline-flex items-center gap-2 text-sm font-medium text-stone-600 transition-colors hover:text-stone-950 dark:text-stone-300 dark:hover:text-white"
-        >
-          <span aria-hidden="true">←</span>
-          Back to products
-        </Link>
-
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-[0_24px_90px_-36px_rgba(15,118,110,0.28)] dark:border-stone-800 dark:bg-stone-950">
             <div className="relative aspect-[4/5] bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.38),_transparent_42%),linear-gradient(135deg,_#134e4a_0%,_#0c0a09_60%,_#1c1917_100%)]">
@@ -208,5 +205,7 @@ export default async function ProductDetailsPage(props) {
         </div>
       </section>
     </main>
+    <Footer />
+    </>
   );
 }

@@ -1,4 +1,6 @@
+import Header from "@/components/common/Header";
 import { createSupabaseServerClient } from "../lib/supabase/server";
+import Footer from "@/components/common/Footer";
 
 export default async function Home() {
   const hasSupabaseEnv =
@@ -19,6 +21,8 @@ export default async function Home() {
   }
 
   return (
+    <>
+    <Header />
     <main className="flex min-h-screen items-center justify-center bg-stone-950 px-6 py-16 text-stone-50">
       <section className="w-full max-w-3xl rounded-[2rem] border border-stone-800 bg-stone-900/80 p-8 shadow-2xl shadow-black/30 sm:p-12">
         <div className="space-y-8">
@@ -62,5 +66,7 @@ export default async function Home() {
         </div>
       </section>
     </main>
+    <Footer />
+</>
   );
 }

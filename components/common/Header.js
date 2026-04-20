@@ -26,7 +26,7 @@ export default function Header() {
         {/* Center: Menu */}
         <nav className="hidden md:flex items-center gap-8">
           <Link
-            href="/shop"
+            href="/products"
             className="text-md font-semibold text-gray-700 transition hover:text-black"
           >
             Shop
