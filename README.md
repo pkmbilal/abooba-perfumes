@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## Supabase setup
 
 1. Copy `.env.example` to `.env.local`.
-2. Fill in `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+2. Fill in `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `NEXT_PUBLIC_WHATSAPP_NUMBER` for cart checkout.
 3. Run `npm run dev`.
 
 Supabase helpers are available in `lib/supabase/server.js` and `lib/supabase/browser.js`.
