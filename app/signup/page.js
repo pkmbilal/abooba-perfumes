@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
 import AuthForm from "@/components/auth/AuthForm";
-import { POST_AUTH_REDIRECT } from "@/lib/auth/redirects";
+import { getPostAuthRedirectPath } from "@/lib/auth/user-role";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export const metadata = {
@@ -17,7 +17,7 @@ export default async function SignupPage() {
   } = await supabase.auth.getUser();
 
   if (user) {
-    redirect(POST_AUTH_REDIRECT);
+    redirect(getPostAuthRedirectPath(user));
   }
 
   return (
