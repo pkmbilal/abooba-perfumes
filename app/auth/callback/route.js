@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getPostAuthRedirectPath } from "@/lib/auth/user-role";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function GET(request) {
@@ -15,6 +16,14 @@ export async function GET(request) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
+      if (next === "/auth/redirect") {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+
+        next = getPostAuthRedirectPath(user);
+      }
+
       const forwardedHost = request.headers.get("x-forwarded-host");
       const isDevelopment = process.env.NODE_ENV === "development";
 

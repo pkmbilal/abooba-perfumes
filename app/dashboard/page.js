@@ -10,6 +10,7 @@ import {
   deleteAddressAction,
   removeFavoriteAction,
 } from "@/app/dashboard/actions";
+import { ADMIN_DASHBOARD_PATH, isAdminUser } from "@/lib/auth/user-role";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -201,6 +202,10 @@ export default async function DashboardPage({ searchParams }) {
 
   if (!user) {
     redirect("/login");
+  }
+
+  if (isAdminUser(user)) {
+    redirect(ADMIN_DASHBOARD_PATH);
   }
 
   const activeTab = resolveActiveTab(resolvedSearchParams?.tab);

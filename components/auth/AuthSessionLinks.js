@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { User } from "lucide-react";
+import { getPostAuthRedirectPath, isAdminUser } from "@/lib/auth/user-role";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
 function formatUserLabel(user) {
@@ -79,13 +80,16 @@ export default function AuthSessionLinks() {
     );
   }
 
+  const dashboardHref = getPostAuthRedirectPath(user);
+  const dashboardLabel = isAdminUser(user) ? "Admin" : "Dashboard";
+
   return (
     <div className="flex items-center gap-3">
       <Link
-        href="/dashboard"
+        href={dashboardHref}
         className="text-sm font-semibold text-gray-700 transition hover:text-black"
       >
-        Dashboard
+        {dashboardLabel}
       </Link>
       <div className="flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm text-stone-700">
         <User size={16} />

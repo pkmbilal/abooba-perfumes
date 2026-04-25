@@ -7,6 +7,7 @@ import {
   buildAuthCallbackUrl,
   POST_AUTH_REDIRECT,
 } from "@/lib/auth/redirects";
+import { getPostAuthRedirectPath } from "@/lib/auth/user-role";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
 const AUTH_COPY = {
@@ -99,7 +100,7 @@ export default function AuthForm({ mode, errorCode = "" }) {
       return;
     }
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -111,7 +112,7 @@ export default function AuthForm({ mode, errorCode = "" }) {
     }
 
     setSuccessMessage(copy.successLabel);
-    router.replace(POST_AUTH_REDIRECT);
+    router.replace(getPostAuthRedirectPath(data.user) || POST_AUTH_REDIRECT);
     router.refresh();
   }
 
