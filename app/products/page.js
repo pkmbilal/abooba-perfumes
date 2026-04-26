@@ -41,7 +41,7 @@ export default async function ProductsPage() {
   return (
     <>
     <Header />
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.18),_transparent_32%),linear-gradient(180deg,_#f2fbf9_0%,_#f5f5f4_100%)] px-6 py-24 dark:bg-[linear-gradient(180deg,_#0c0a09_0%,_#111827_100%)]">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.18),_transparent_32%),linear-gradient(180deg,_#f2fbf9_0%,_#f5f5f4_100%)] px-6 pb-24 pt-32 dark:bg-[linear-gradient(180deg,_#0c0a09_0%,_#111827_100%)]">
       <section className="mx-auto max-w-6xl">
         <div className="mb-8 max-w-2xl">
           <p className="text-sm uppercase tracking-[0.35em] text-teal-700 dark:text-teal-300">

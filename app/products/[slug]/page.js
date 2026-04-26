@@ -94,7 +94,7 @@ export default async function ProductDetailsPage(props) {
   return (
     <>
     <Header />
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.18),_transparent_22%),linear-gradient(180deg,_#f2fbf9_0%,_#f5f5f4_52%,_#fafaf9_100%)] px-6 py-14 dark:bg-[linear-gradient(180deg,_#0c0a09_0%,_#111827_100%)]">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.18),_transparent_22%),linear-gradient(180deg,_#f2fbf9_0%,_#f5f5f4_52%,_#fafaf9_100%)] px-6 pb-14 pt-28 sm:pt-32 dark:bg-[linear-gradient(180deg,_#0c0a09_0%,_#111827_100%)]">
       <section className="mx-auto max-w-6xl">
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-[0_24px_90px_-36px_rgba(15,118,110,0.28)] dark:border-stone-800 dark:bg-stone-950">

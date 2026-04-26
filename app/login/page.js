@@ -23,7 +23,7 @@ export default async function LoginPage({ searchParams }) {
   return (
     <>
       <Header />
-      <main className="flex min-h-[calc(100vh-10rem)] items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.16),_transparent_30%),linear-gradient(180deg,_#f7f7f5_0%,_#f0fdfa_100%)] px-6 py-16">
+      <main className="flex min-h-[calc(100vh-10rem)] items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.16),_transparent_30%),linear-gradient(180deg,_#f7f7f5_0%,_#f0fdfa_100%)] px-6 pb-16 pt-28 sm:pt-32">
         <AuthForm mode="login" errorCode={searchParams?.error} />
       </main>
       <Footer />

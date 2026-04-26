@@ -32,7 +32,7 @@ export default function CartPageClient() {
   }
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.12),_transparent_24%),linear-gradient(180deg,_#f8fbfb_0%,_#f5f7f7_52%,_#f7faf9_100%)] px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12 dark:bg-[linear-gradient(180deg,_#0c0a09_0%,_#111827_100%)]">
+    <main className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.12),_transparent_24%),linear-gradient(180deg,_#f8fbfb_0%,_#f5f7f7_52%,_#f7faf9_100%)] px-4 pb-8 pt-28 sm:px-6 sm:pb-10 sm:pt-32 lg:px-8 lg:pb-12 lg:pt-32 dark:bg-[linear-gradient(180deg,_#0c0a09_0%,_#111827_100%)]">
       <section className="mx-auto max-w-6xl">
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_320px]">
           <div className="space-y-5">
