@@ -105,13 +105,13 @@ export default function AuthSessionLinks() {
       <div className="flex items-center gap-3">
         <Link
           href="/login"
-          className="text-sm font-semibold text-gray-700 transition hover:text-black"
+          className="text-sm font-semibold text-slate-200 transition hover:text-[#e3c995]"
         >
           Login
         </Link>
         <Link
           href="/signup"
-          className="rounded-full bg-stone-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-stone-800"
+          className="rounded-full bg-[linear-gradient(135deg,#d8bb82_0%,#b88942_100%)] px-4 py-2 text-sm font-semibold text-[#0f1720] transition hover:brightness-105"
         >
           Sign up
         </Link>
@@ -129,7 +129,7 @@ export default function AuthSessionLinks() {
         render={
           <button
             type="button"
-            className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-3 text-sm font-medium text-stone-950 shadow-[0_12px_30px_-18px_rgba(28,25,23,0.55)] ring-1 ring-stone-200 transition hover:bg-stone-50 aria-expanded:bg-stone-50"
+            className="inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3 text-sm font-medium text-white shadow-[0_12px_30px_-18px_rgba(0,0,0,0.65)] backdrop-blur transition hover:bg-white/12 aria-expanded:bg-white/12"
           />
         }
       >
@@ -138,11 +138,11 @@ export default function AuthSessionLinks() {
           <AvatarImage src={avatarUrl} alt={userLabel} />
           <AvatarFallback>{getInitials(userLabel)}</AvatarFallback>
         </Avatar>
-        <ChevronDown className="text-stone-600" />
+        <ChevronDown className="text-[#e3c995]" />
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="w-56 bg-white text-stone-950 shadow-[0_24px_60px_-32px_rgba(28,25,23,0.45)] ring-stone-200"
+        className="w-56 border border-white/10 bg-[#081520] text-slate-100 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.7)] ring-0"
       >
         <DropdownMenuGroup>
           <DropdownMenuLabel>Signed in as</DropdownMenuLabel>
