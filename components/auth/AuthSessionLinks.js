@@ -3,16 +3,55 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { User } from "lucide-react";
-import { getPostAuthRedirectPath, isAdminUser } from "@/lib/auth/user-role";
+import { ChevronDown, LayoutDashboard, LogOut, Shield, User } from "lucide-react";
+import {
+  ADMIN_DASHBOARD_PATH,
+  DEFAULT_USER_DASHBOARD_PATH,
+  isAdminUser,
+} from "@/lib/auth/user-role";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 function formatUserLabel(user) {
-  if (!user?.email) {
-    return "Account";
+  const metadataName =
+    user?.user_metadata?.full_name ??
+    user?.user_metadata?.name ??
+    user?.user_metadata?.display_name;
+
+  if (typeof metadataName === "string" && metadataName.trim()) {
+    return metadataName.trim();
   }
 
-  return user.email;
+  if (user?.email) {
+    return user.email.split("@")[0];
+  }
+
+  return "Account";
+}
+
+function getInitials(label) {
+  const words = label
+    .split(/\s+/)
+    .map((word) => word[0])
+    .filter(Boolean);
+
+  return words.slice(0, 2).join("").toUpperCase() || "AP";
+}
+
+function getUserAvatarUrl(user) {
+  const avatarUrl =
+    user?.user_metadata?.avatar_url ?? user?.user_metadata?.picture;
+
+  return typeof avatarUrl === "string" ? avatarUrl : "";
 }
 
 export default function AuthSessionLinks() {
@@ -66,13 +105,13 @@ export default function AuthSessionLinks() {
       <div className="flex items-center gap-3">
         <Link
           href="/login"
-          className="text-sm font-semibold text-gray-700 transition hover:text-black"
+          className="text-sm font-semibold text-slate-200 transition hover:text-[#e3c995]"
         >
           Login
         </Link>
         <Link
           href="/signup"
-          className="rounded-full bg-stone-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-stone-800"
+          className="rounded-full bg-[linear-gradient(135deg,#d8bb82_0%,#b88942_100%)] px-4 py-2 text-sm font-semibold text-[#0f1720] transition hover:brightness-105"
         >
           Sign up
         </Link>
@@ -80,29 +119,63 @@ export default function AuthSessionLinks() {
     );
   }
 
-  const dashboardHref = getPostAuthRedirectPath(user);
-  const dashboardLabel = isAdminUser(user) ? "Admin" : "Dashboard";
+  const userLabel = formatUserLabel(user);
+  const userIsAdmin = isAdminUser(user);
+  const avatarUrl = getUserAvatarUrl(user);
 
   return (
-    <div className="flex items-center gap-3">
-      <Link
-        href={dashboardHref}
-        className="text-sm font-semibold text-gray-700 transition hover:text-black"
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        render={
+          <button
+            type="button"
+            className="inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3 text-sm font-medium text-white shadow-[0_12px_30px_-18px_rgba(0,0,0,0.65)] backdrop-blur transition hover:bg-white/12 aria-expanded:bg-white/12"
+          />
+        }
       >
-        {dashboardLabel}
-      </Link>
-      <div className="flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm text-stone-700">
-        <User size={16} />
-        <span className="max-w-40 truncate">{formatUserLabel(user)}</span>
-      </div>
-      <button
-        type="button"
-        onClick={handleSignOut}
-        disabled={isSigningOut}
-        className="text-sm font-semibold text-gray-700 transition hover:text-black disabled:cursor-not-allowed disabled:opacity-70"
+        <span className="max-w-24 truncate">{userIsAdmin ? "Admin" : userLabel}</span>
+        <Avatar size="sm">
+          <AvatarImage src={avatarUrl} alt={userLabel} />
+          <AvatarFallback>{getInitials(userLabel)}</AvatarFallback>
+        </Avatar>
+        <ChevronDown className="text-[#e3c995]" />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        align="end"
+        className="w-56 border border-white/10 bg-[#081520] text-slate-100 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.7)] ring-0"
       >
-        {isSigningOut ? "Signing out..." : "Logout"}
-      </button>
-    </div>
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>Signed in as</DropdownMenuLabel>
+          <DropdownMenuItem disabled>
+            <User />
+            <span className="truncate">{user.email ?? userLabel}</span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem render={<Link href={DEFAULT_USER_DASHBOARD_PATH} />}>
+            <LayoutDashboard />
+            User dashboard
+          </DropdownMenuItem>
+          {userIsAdmin ? (
+            <DropdownMenuItem render={<Link href={ADMIN_DASHBOARD_PATH} />}>
+              <Shield />
+              Admin dashboard
+            </DropdownMenuItem>
+          ) : null}
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem
+            disabled={isSigningOut}
+            onClick={handleSignOut}
+            variant="destructive"
+          >
+            <LogOut />
+            {isSigningOut ? "Signing out..." : "Logout"}
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

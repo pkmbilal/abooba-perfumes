@@ -221,7 +221,7 @@ export default async function DashboardPage({ searchParams }) {
   return (
     <>
       <Header />
-      <main className="min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.16),_transparent_30%),linear-gradient(180deg,_#f7f7f5_0%,_#ecfeff_100%)] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+      <main className="min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.16),_transparent_30%),linear-gradient(180deg,_#f7f7f5_0%,_#ecfeff_100%)] px-4 pb-8 pt-28 sm:px-6 sm:pb-10 sm:pt-32 lg:px-8">
         <section className="mx-auto max-w-6xl">
           <div className="rounded-[2rem] border border-stone-200/90 bg-white/80 p-5 shadow-[0_28px_100px_-52px_rgba(15,118,110,0.38)] backdrop-blur sm:p-8">
             <div className="max-w-3xl">

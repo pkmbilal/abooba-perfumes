@@ -65,7 +65,7 @@ export default async function AdminProductsPage() {
     return (
       <>
         <Header />
-        <main className="min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.14),_transparent_28%),linear-gradient(180deg,_#f7f7f5_0%,_#ecfeff_100%)] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+        <main className="min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.14),_transparent_28%),linear-gradient(180deg,_#f7f7f5_0%,_#ecfeff_100%)] px-4 pb-8 pt-28 sm:px-6 sm:pb-10 sm:pt-32 lg:px-8">
           <section className="mx-auto max-w-6xl rounded-[2rem] border border-rose-200 bg-white p-6 shadow-[0_28px_100px_-52px_rgba(15,118,110,0.38)]">
             <p className="text-sm font-semibold text-rose-700">
               We could not load the admin product dashboard: {error.message}
@@ -80,7 +80,7 @@ export default async function AdminProductsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.14),_transparent_28%),linear-gradient(180deg,_#f7f7f5_0%,_#ecfeff_100%)] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+      <main className="min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.14),_transparent_28%),linear-gradient(180deg,_#f7f7f5_0%,_#ecfeff_100%)] px-4 pb-8 pt-28 sm:px-6 sm:pb-10 sm:pt-32 lg:px-8">
         <section className="mx-auto max-w-7xl">
           <div className="rounded-[2rem] border border-stone-200/90 bg-white/85 p-5 shadow-[0_28px_100px_-52px_rgba(15,118,110,0.38)] backdrop-blur sm:p-8">
             <div className="flex flex-col gap-5 border-b border-stone-200 pb-6 sm:flex-row sm:items-end sm:justify-between">
