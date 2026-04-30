@@ -2,6 +2,11 @@
 
 import { revalidatePath } from "next/cache";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import {
+  buildUserProfileImagePath,
+  getProfileImageExtension,
+  USER_PROFILE_IMAGES_BUCKET,
+} from "@/lib/storage/user-profile-images";
 
 async function getAuthenticatedUser() {
   const supabase = await createSupabaseServerClient();
@@ -10,6 +15,79 @@ async function getAuthenticatedUser() {
   } = await supabase.auth.getUser();
 
   return { supabase, user };
+}
+
+function buildProfileFieldValues({
+  fullName,
+  phoneNumber,
+  avatarUrl,
+  dateOfBirth,
+  gender,
+}) {
+  return {
+    fullName,
+    phoneNumber,
+    avatarUrl,
+    dateOfBirth,
+    gender,
+  };
+}
+
+function isUploadedFile(value) {
+  return (
+    value &&
+    typeof value === "object" &&
+    typeof value.arrayBuffer === "function" &&
+    typeof value.name === "string" &&
+    typeof value.size === "number" &&
+    value.size > 0
+  );
+}
+
+async function uploadProfileImage({ supabase, userId, file }) {
+  if (!getProfileImageExtension(file.type)) {
+    return {
+      error: "Please upload a JPG, PNG, or WebP profile image.",
+      publicUrl: "",
+    };
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+    return {
+      error: "Please upload a profile image smaller than 5 MB.",
+      publicUrl: "",
+    };
+  }
+
+  const uploadPath = buildUserProfileImagePath({
+    userId,
+    fileName: file.name,
+    contentType: file.type,
+  });
+
+  const { error: uploadError } = await supabase.storage
+    .from(USER_PROFILE_IMAGES_BUCKET)
+    .upload(uploadPath, file, {
+      cacheControl: "3600",
+      upsert: false,
+      contentType: file.type,
+    });
+
+  if (uploadError) {
+    return {
+      error: uploadError.message,
+      publicUrl: "",
+    };
+  }
+
+  const { data } = supabase.storage
+    .from(USER_PROFILE_IMAGES_BUCKET)
+    .getPublicUrl(uploadPath);
+
+  return {
+    error: "",
+    publicUrl: data.publicUrl,
+  };
 }
 
 export async function updateProfileAction(_previousState, formData) {
@@ -24,43 +102,47 @@ export async function updateProfileAction(_previousState, formData) {
 
   const fullName = String(formData.get("fullName") ?? "").trim();
   const phoneNumber = String(formData.get("phoneNumber") ?? "").trim();
-  const avatarUrl = String(formData.get("avatarUrl") ?? "").trim();
+  const currentAvatarUrl = String(formData.get("currentAvatarUrl") ?? "").trim();
+  const avatarImage = formData.get("avatarImage");
   const dateOfBirth = String(formData.get("dateOfBirth") ?? "").trim();
   const gender = String(formData.get("gender") ?? "").trim();
   const normalizedGender = ["male", "female", "other"].includes(gender)
     ? gender
     : "";
+  let avatarUrl = currentAvatarUrl;
+  const fieldValues = buildProfileFieldValues({
+    fullName,
+    phoneNumber,
+    avatarUrl,
+    dateOfBirth,
+    gender: normalizedGender,
+  });
 
   if (!fullName) {
     return {
       status: "error",
       message: "Full name is required.",
-      fieldValues: {
-        fullName,
-        phoneNumber,
-        avatarUrl,
-        dateOfBirth,
-        gender: normalizedGender,
-      },
+      fieldValues,
     };
   }
 
-  if (avatarUrl) {
-    try {
-      new URL(avatarUrl);
-    } catch {
+  if (isUploadedFile(avatarImage)) {
+    const { error, publicUrl } = await uploadProfileImage({
+      supabase,
+      userId: user.id,
+      file: avatarImage,
+    });
+
+    if (error) {
       return {
         status: "error",
-        message: "Please enter a valid avatar URL.",
-        fieldValues: {
-          fullName,
-          phoneNumber,
-          avatarUrl,
-          dateOfBirth,
-          gender: normalizedGender,
-        },
+        message: error,
+        fieldValues,
       };
     }
+
+    avatarUrl = publicUrl;
+    fieldValues.avatarUrl = publicUrl;
   }
 
   const { error: profileError } = await supabase.from("profiles").upsert(
@@ -81,13 +163,7 @@ export async function updateProfileAction(_previousState, formData) {
     return {
       status: "error",
       message: profileError.message,
-      fieldValues: {
-        fullName,
-        phoneNumber,
-        avatarUrl,
-        dateOfBirth,
-        gender: normalizedGender,
-      },
+      fieldValues,
     };
   }
 
@@ -105,13 +181,7 @@ export async function updateProfileAction(_previousState, formData) {
     return {
       status: "error",
       message: authError.message,
-      fieldValues: {
-        fullName,
-        phoneNumber,
-        avatarUrl,
-        dateOfBirth,
-        gender: normalizedGender,
-      },
+      fieldValues,
     };
   }
 
@@ -120,13 +190,7 @@ export async function updateProfileAction(_previousState, formData) {
   return {
     status: "success",
     message: "Profile updated successfully.",
-    fieldValues: {
-      fullName,
-      phoneNumber,
-      avatarUrl,
-      dateOfBirth,
-      gender: normalizedGender,
-    },
+    fieldValues,
   };
 }
 

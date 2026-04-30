@@ -9,14 +9,14 @@ import {
 
 function EmptyState() {
   return (
-    <div className="rounded-[1.75rem] border border-dashed border-stone-300 bg-stone-50/80 px-6 py-12 text-center">
-      <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-white text-teal-700 shadow-sm">
+    <div className="rounded-[1.75rem] border border-dashed border-white/20 bg-white/6 px-6 py-12 text-center">
+      <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#d8bb82] text-[#0f1720] shadow-sm">
         <HeartOff size={22} />
       </div>
-      <h3 className="mt-5 font-[family:var(--font-dashboard-heading)] text-xl font-semibold text-stone-950">
+      <h3 className="mt-5 font-[family:var(--font-dashboard-heading)] text-xl font-semibold text-white">
         No favorites saved yet
       </h3>
-      <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-stone-600">
+      <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-slate-300">
         When you save fragrances you love, they will appear here for quicker
         browsing and buying later.
       </p>
@@ -30,7 +30,7 @@ export default function FavoritesTab({
   removeFavoriteAction,
 }) {
   return (
-    <section className="rounded-[1.75rem] border border-stone-200 bg-white p-6 shadow-[0_24px_80px_-50px_rgba(15,118,110,0.35)] sm:p-8">
+    <section className="rounded-[1.75rem] border border-white/10 bg-white/6 p-6 shadow-[0_24px_80px_-60px_rgba(0,0,0,0.85)] sm:p-8">
       <DashboardSectionHeader
         eyebrow="Favorites"
         title="Your saved fragrances"
@@ -55,7 +55,7 @@ export default function FavoritesTab({
               return (
                 <article
                   key={id}
-                  className="overflow-hidden rounded-[1.6rem] border border-stone-200 bg-stone-50/55 transition hover:border-teal-100 hover:shadow-[0_18px_45px_-32px_rgba(15,118,110,0.35)]"
+                  className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/6 transition hover:border-[#d8bb82]/30 hover:bg-white/8"
                 >
                   <div className="relative aspect-[4/3] border-b border-stone-200 bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.3),_transparent_45%),linear-gradient(135deg,_#134e4a_0%,_#0f172a_100%)]">
                     {image ? (
@@ -70,15 +70,15 @@ export default function FavoritesTab({
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.02)_0%,rgba(12,10,9,0.16)_35%,rgba(12,10,9,0.56)_100%)]" />
                   </div>
 
-                  <div className="space-y-4 p-5">
+                  <div className="flex flex-col gap-4 p-5">
                     <div>
-                      <h3 className="text-lg font-semibold text-stone-950">
+                      <h3 className="text-lg font-semibold text-white">
                         {product.name}
                       </h3>
-                      <p className="mt-2 text-base font-semibold text-stone-900">
+                      <p className="mt-2 text-base font-semibold text-[#e3c995]">
                         {formatPrice(product.price)}
                       </p>
-                      <p className="mt-3 line-clamp-3 text-sm leading-6 text-stone-600">
+                      <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-300">
                         {product.short_description ||
                           "A refined fragrance from the Abooba Perfumes collection."}
                       </p>
@@ -87,7 +87,7 @@ export default function FavoritesTab({
                     <div className="flex flex-wrap gap-3">
                       <Link
                         href={`/products/${product.slug}`}
-                        className="inline-flex items-center justify-center rounded-full bg-stone-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-stone-800"
+                        className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#d8bb82_0%,#b88942_100%)] px-4 py-2 text-sm font-semibold text-[#0f1720] transition hover:brightness-105"
                       >
                         View Product
                       </Link>
@@ -96,7 +96,7 @@ export default function FavoritesTab({
                         <input type="hidden" name="productId" value={id} />
                         <button
                           type="submit"
-                          className="inline-flex items-center justify-center rounded-full border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:border-stone-300 hover:bg-stone-100"
+                          className="inline-flex items-center justify-center rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-rose-300/40 hover:bg-rose-400/10"
                         >
                           Remove from Favorites
                         </button>

@@ -7,6 +7,7 @@ import {
   buildAuthCallbackUrl,
   POST_AUTH_REDIRECT,
 } from "@/lib/auth/redirects";
+import { montserrat } from "@/components/home/home-fonts";
 import { getPostAuthRedirectPath } from "@/lib/auth/user-role";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
@@ -117,22 +118,24 @@ export default function AuthForm({ mode, errorCode = "" }) {
   }
 
   return (
-    <section className="w-full max-w-md rounded-[2rem] border border-stone-200 bg-white/90 p-8 shadow-[0_24px_80px_-40px_rgba(12,10,9,0.35)] backdrop-blur sm:p-10">
-      <div className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-teal-700">
+    <section className="w-full max-w-md rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.09)_0%,rgba(255,255,255,0.05)_100%)] p-8 shadow-[0_28px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur sm:p-10">
+      <div className="flex flex-col gap-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#d8bb82]">
           {copy.eyebrow}
         </p>
-        <h1 className="text-3xl font-semibold tracking-tight text-stone-950">
+        <h1
+          className={`${montserrat.className} text-3xl font-semibold tracking-tight text-white`}
+        >
           {copy.title}
         </h1>
-        <p className="text-sm leading-6 text-stone-600">{copy.description}</p>
+        <p className="text-sm leading-6 text-slate-300">{copy.description}</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-        <div className="space-y-2">
+      <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
+        <div className="flex flex-col gap-2">
           <label
             htmlFor={`${mode}-email`}
-            className="text-sm font-medium text-stone-700"
+            className="text-sm font-medium text-slate-200"
           >
             Email address
           </label>
@@ -143,15 +146,15 @@ export default function AuthForm({ mode, errorCode = "" }) {
             onChange={(event) => setEmail(event.target.value)}
             autoComplete="email"
             required
-            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-950 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-100"
+            className="w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-[#d8bb82]/60 focus:ring-2 focus:ring-[#d8bb82]/20"
             placeholder="you@example.com"
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="flex flex-col gap-2">
           <label
             htmlFor={`${mode}-password`}
-            className="text-sm font-medium text-stone-700"
+            className="text-sm font-medium text-slate-200"
           >
             Password
           </label>
@@ -163,7 +166,7 @@ export default function AuthForm({ mode, errorCode = "" }) {
             autoComplete={mode === "login" ? "current-password" : "new-password"}
             required
             minLength={6}
-            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-950 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-100"
+            className="w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-[#d8bb82]/60 focus:ring-2 focus:ring-[#d8bb82]/20"
             placeholder="Minimum 6 characters"
           />
         </div>
@@ -183,17 +186,17 @@ export default function AuthForm({ mode, errorCode = "" }) {
         <button
           type="submit"
           disabled={isPending}
-          className="inline-flex w-full items-center justify-center rounded-2xl bg-stone-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-70"
+          className="inline-flex w-full items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#d8bb82_0%,#b88942_100%)] px-5 py-3 text-sm font-semibold text-[#0f1720] shadow-[0_18px_40px_-22px_rgba(216,187,130,0.85)] transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isPending ? copy.loadingLabel : copy.buttonLabel}
         </button>
       </form>
 
-      <p className="mt-6 text-sm text-stone-600">
+      <p className="mt-6 text-sm text-slate-300">
         {copy.alternatePrompt}{" "}
         <Link
           href={copy.alternateHref}
-          className="font-semibold text-stone-950 underline decoration-stone-300 underline-offset-4 transition hover:decoration-stone-950"
+          className="font-semibold text-[#e3c995] underline decoration-[#d8bb82]/30 underline-offset-4 transition hover:decoration-[#d8bb82]"
         >
           {copy.alternateLabel}
         </Link>

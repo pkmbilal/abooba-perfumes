@@ -133,11 +133,11 @@ export default function AuthSessionLinks() {
           />
         }
       >
-        <span className="max-w-24 truncate">{userIsAdmin ? "Admin" : userLabel}</span>
         <Avatar size="sm">
           <AvatarImage src={avatarUrl} alt={userLabel} />
           <AvatarFallback>{getInitials(userLabel)}</AvatarFallback>
         </Avatar>
+        <span className="max-w-24 truncate">{userIsAdmin ? "Admin" : userLabel}</span>
         <ChevronDown className="text-[#e3c995]" />
       </DropdownMenuTrigger>
       <DropdownMenuContent
@@ -146,19 +146,28 @@ export default function AuthSessionLinks() {
       >
         <DropdownMenuGroup>
           <DropdownMenuLabel>Signed in as</DropdownMenuLabel>
-          <DropdownMenuItem disabled>
+          <DropdownMenuItem
+            disabled
+            className="text-slate-300 [&_svg]:text-[#e3c995]"
+          >
             <User />
             <span className="truncate">{user.email ?? userLabel}</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem render={<Link href={DEFAULT_USER_DASHBOARD_PATH} />}>
+          <DropdownMenuItem
+            render={<Link href={DEFAULT_USER_DASHBOARD_PATH} />}
+            className="text-slate-200 transition hover:bg-[#d8bb82]/12 hover:text-[#e3c995] focus:bg-[#d8bb82]/12 focus:text-[#e3c995] [&_svg]:text-[#e3c995]"
+          >
             <LayoutDashboard />
             User dashboard
           </DropdownMenuItem>
           {userIsAdmin ? (
-            <DropdownMenuItem render={<Link href={ADMIN_DASHBOARD_PATH} />}>
+            <DropdownMenuItem
+              render={<Link href={ADMIN_DASHBOARD_PATH} />}
+              className="text-slate-200 transition hover:bg-[#d8bb82]/12 hover:text-[#e3c995] focus:bg-[#d8bb82]/12 focus:text-[#e3c995] [&_svg]:text-[#e3c995]"
+            >
               <Shield />
               Admin dashboard
             </DropdownMenuItem>
@@ -170,6 +179,7 @@ export default function AuthSessionLinks() {
             disabled={isSigningOut}
             onClick={handleSignOut}
             variant="destructive"
+            className="text-red-300 transition hover:bg-red-500/12 hover:text-red-200 focus:bg-red-500/12 focus:text-red-200 [&_svg]:text-red-300"
           >
             <LogOut />
             {isSigningOut ? "Signing out..." : "Logout"}

@@ -34,7 +34,7 @@ export default function Header() {
     <nav
       className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "border-b border-white/10 bg-[#07131d]/92 py-3 shadow-[0_18px_60px_-32px_rgba(0,0,0,0.85)] backdrop-blur-md"
+          ? "border-b border-white/12 bg-[#07131d]/58 py-3 shadow-[0_18px_60px_-34px_rgba(0,0,0,0.9)] backdrop-blur-2xl backdrop-saturate-150"
           : "bg-[#07131d]/70 py-5 backdrop-blur-sm"
       }`}
     >

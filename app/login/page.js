@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
 import AuthForm from "@/components/auth/AuthForm";
+import { poppins } from "@/components/home/home-fonts";
 import { getPostAuthRedirectPath } from "@/lib/auth/user-role";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -23,7 +24,9 @@ export default async function LoginPage({ searchParams }) {
   return (
     <>
       <Header />
-      <main className="flex min-h-[calc(100vh-10rem)] items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.16),_transparent_30%),linear-gradient(180deg,_#f7f7f5_0%,_#f0fdfa_100%)] px-6 pb-16 pt-28 sm:pt-32">
+      <main
+        className={`${poppins.className} flex min-h-[calc(100vh-10rem)] items-center justify-center bg-[radial-gradient(circle_at_18%_12%,rgba(12,109,96,0.24),transparent_32%),radial-gradient(circle_at_88%_4%,rgba(216,187,130,0.14),transparent_28%),linear-gradient(180deg,#07131d_0%,#06131d_64%,#081119_100%)] px-6 pb-16 pt-28 text-white sm:pt-32`}
+      >
         <AuthForm mode="login" errorCode={searchParams?.error} />
       </main>
       <Footer />

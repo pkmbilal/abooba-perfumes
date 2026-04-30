@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AddToCartButton from "@/components/cart/AddToCartButton";
+import { montserrat, poppins } from "@/components/home/home-fonts";
 import {
   buildMeta,
   formatPrice,
@@ -29,11 +30,11 @@ function DetailSection({ label, value }) {
   }
 
   return (
-    <div className="rounded-[1.5rem] border border-stone-200 bg-white/80 p-5 backdrop-blur dark:border-stone-800 dark:bg-stone-900/70">
-      <p className="text-xs uppercase tracking-[0.3em] text-stone-500 dark:text-stone-400">
+    <div className="rounded-[1.5rem] border border-white/10 bg-white/6 p-5 backdrop-blur">
+      <p className="text-xs uppercase tracking-[0.3em] text-[#d8bb82]">
         {label}
       </p>
-      <p className="mt-3 text-base leading-7 text-stone-700 dark:text-stone-200">
+      <p className="mt-3 text-base leading-7 text-slate-200">
         {value}
       </p>
     </div>
@@ -94,11 +95,13 @@ export default async function ProductDetailsPage(props) {
   return (
     <>
     <Header />
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.18),_transparent_22%),linear-gradient(180deg,_#f2fbf9_0%,_#f5f5f4_52%,_#fafaf9_100%)] px-6 pb-14 pt-28 sm:pt-32 dark:bg-[linear-gradient(180deg,_#0c0a09_0%,_#111827_100%)]">
-      <section className="mx-auto max-w-6xl">
+    <main
+      className={`${poppins.className} min-h-screen bg-[radial-gradient(circle_at_18%_12%,rgba(12,109,96,0.24),transparent_32%),radial-gradient(circle_at_88%_4%,rgba(216,187,130,0.14),transparent_28%),linear-gradient(180deg,#07131d_0%,#06131d_64%,#081119_100%)] px-6 pb-16 pt-28 text-white sm:pt-32`}
+    >
+      <section className="mx-auto max-w-7xl">
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-[0_24px_90px_-36px_rgba(15,118,110,0.28)] dark:border-stone-800 dark:bg-stone-950">
-            <div className="relative aspect-[4/5] bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.38),_transparent_42%),linear-gradient(135deg,_#134e4a_0%,_#0c0a09_60%,_#1c1917_100%)]">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.04)_100%)] p-4 shadow-[0_28px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[radial-gradient(circle_at_top,_rgba(216,187,130,0.2),_transparent_44%),linear-gradient(135deg,_#11313b_0%,_#07131d_65%,_#0f1720_100%)]">
               {primaryImage ? (
                 <Image
                   src={primaryImage.image_url}
@@ -111,10 +114,10 @@ export default async function ProductDetailsPage(props) {
               ) : null}
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.04)_0%,rgba(12,10,9,0.16)_35%,rgba(12,10,9,0.72)_100%)]" />
               <div className="absolute inset-x-0 bottom-0 p-8 text-stone-50">
-                <p className="text-sm uppercase tracking-[0.38em] text-teal-200">
+                <p className="text-sm uppercase tracking-[0.38em] text-[#d8bb82]">
                   {product.brand ?? "Abooba Perfumes"}
                 </p>
-                <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+                <h1 className={`${montserrat.className} mt-4 text-4xl font-semibold tracking-tight sm:text-5xl`}>
                   {product.name}
                 </h1>
                 <p className="mt-4 max-w-xl text-base leading-7 text-stone-200">
@@ -125,13 +128,13 @@ export default async function ProductDetailsPage(props) {
             </div>
           </div>
 
-          <div className="space-y-6">
-            <div className="rounded-[2rem] border border-stone-200 bg-white/85 p-7 shadow-[0_24px_90px_-42px_rgba(15,118,110,0.28)] backdrop-blur dark:border-stone-800 dark:bg-stone-950/85">
+          <div className="flex flex-col gap-6">
+            <div className="rounded-[2rem] border border-white/10 bg-white/6 p-7 shadow-[0_28px_100px_-64px_rgba(0,0,0,0.85)] backdrop-blur">
               <div className="flex flex-wrap gap-2">
                 {meta.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium tracking-wide text-stone-700 dark:bg-stone-900 dark:text-stone-200"
+                    className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-medium tracking-wide text-slate-200"
                   >
                     {item}
                   </span>
@@ -139,7 +142,7 @@ export default async function ProductDetailsPage(props) {
               </div>
 
               <div className="mt-6 flex items-end gap-4">
-                <p className="text-4xl font-semibold tracking-tight text-stone-950 dark:text-white">
+                <p className="text-4xl font-semibold tracking-tight text-white">
                   {formatPrice(product.price)}
                 </p>
                 {product.compare_at_price ? (
@@ -149,22 +152,22 @@ export default async function ProductDetailsPage(props) {
                 ) : null}
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-4 text-sm text-stone-600 dark:text-stone-300">
+              <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-300">
                 <p>
                   Status:{" "}
-                  <span className="font-medium text-stone-900 dark:text-white">
+                  <span className="font-medium text-white">
                     {product.stock_quantity > 0 ? "In stock" : "Out of stock"}
                   </span>
                 </p>
                 <p>
                   SKU:{" "}
-                  <span className="font-medium text-stone-900 dark:text-white">
+                  <span className="font-medium text-white">
                     {product.sku ?? "Not assigned"}
                   </span>
                 </p>
                 <p>
                   Gender:{" "}
-                  <span className="font-medium capitalize text-stone-900 dark:text-white">
+                  <span className="font-medium capitalize text-white">
                     {product.gender ?? "Unisex"}
                   </span>
                 </p>
@@ -173,15 +176,16 @@ export default async function ProductDetailsPage(props) {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <AddToCartButton
                   product={product}
+                  tone="luxury"
                   className="min-w-[12rem] px-7"
                 />
-                <p className="text-sm leading-6 text-stone-500 dark:text-stone-400">
+                <p className="text-sm leading-6 text-slate-400">
                   Cart items are saved in this browser so shoppers can keep
                   browsing and return anytime.
                 </p>
               </div>
 
-              <p className="mt-8 text-base leading-8 text-stone-700 dark:text-stone-200">
+              <p className="mt-8 text-base leading-8 text-slate-200">
                 {product.description ??
                   "This fragrance balances a luminous opening with a deeper heart and smooth, long-lasting base."}
               </p>
