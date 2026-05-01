@@ -21,7 +21,7 @@ function buildProductNote(product) {
 export default function BestSellersSection({ products = [] }) {
   return (
     <section className="relative py-20 sm:py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(8,73,66,0.18),_transparent_26%),linear-gradient(180deg,_rgba(8,17,25,0)_0%,_rgba(7,18,27,0.7)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(216,187,130,0.12),_transparent_26%)] dark:bg-[radial-gradient(circle_at_top,_rgba(8,73,66,0.18),_transparent_26%),linear-gradient(180deg,_rgba(8,17,25,0)_0%,_rgba(7,18,27,0.7)_100%)]" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Best Sellers"
@@ -37,7 +37,7 @@ export default function BestSellersSection({ products = [] }) {
             return (
               <article
                 key={product.id}
-                className="group overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.04)_100%)] p-4 shadow-[0_28px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#d8bb82]/35"
+                className="theme-panel group overflow-hidden rounded-[2rem] border p-4 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#d8bb82]/35"
               >
                 <div className="relative overflow-hidden rounded-[1.5rem]">
                   <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(7,19,29,0.08)_0%,rgba(7,19,29,0.12)_35%,rgba(7,19,29,0.55)_100%)]" />
@@ -61,23 +61,23 @@ export default function BestSellersSection({ products = [] }) {
                     {buildProductNote(product)}
                   </p>
                   <h3
-                    className={`${montserrat.className} mt-3 text-2xl font-semibold tracking-tight text-white`}
+                    className={`${montserrat.className} theme-heading mt-3 text-2xl font-semibold tracking-tight`}
                   >
                     {product.name}
                   </h3>
                   <div className="mt-6 flex items-end justify-between gap-4">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.26em] text-slate-400">
+                      <p className="theme-muted text-xs uppercase tracking-[0.26em]">
                         Price
                       </p>
-                      <p className="mt-2 text-2xl font-semibold text-white">
+                      <p className="theme-heading mt-2 text-2xl font-semibold">
                         {formatPrice(product.price)}
                       </p>
                     </div>
                     <div className="flex gap-2">
                       <Link
                         href={productHref}
-                        className="rounded-full border border-white/12 bg-white/6 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                        className="theme-chip rounded-full border px-4 py-2 text-sm font-medium transition hover:border-[#d8bb82]/35"
                       >
                         View
                       </Link>
@@ -94,7 +94,7 @@ export default function BestSellersSection({ products = [] }) {
             );
           })}
           {products.length === 0 ? (
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 px-6 py-8 text-sm leading-6 text-slate-300 md:col-span-2 xl:col-span-4">
+            <div className="theme-panel rounded-[2rem] border px-6 py-8 text-sm leading-6 theme-muted md:col-span-2 xl:col-span-4">
               Best seller products will appear here when active products are
               available in the catalog.
             </div>

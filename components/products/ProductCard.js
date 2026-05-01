@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AddToCartButton from "@/components/cart/AddToCartButton";
+import { montserrat } from "@/components/home/home-fonts";
 import FavoriteButton from "@/components/products/FavoriteButton";
 import {
   buildMeta,
@@ -13,7 +14,7 @@ export default function ProductCard({ product }) {
   const primaryImage = getPrimaryImage(product);
 
   return (
-    <article className="group overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-[0_24px_80px_-32px_rgba(15,118,110,0.28)] transition-transform duration-300 hover:-translate-y-1 dark:border-stone-800 dark:bg-stone-950">
+    <article className="theme-panel group overflow-hidden rounded-[2rem] border p-4 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#d8bb82]/35">
       <div className="relative">
         <FavoriteButton
           productId={product.id}
@@ -21,9 +22,9 @@ export default function ProductCard({ product }) {
         />
         <Link
           href={`/products/${product.slug}`}
-          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-4 focus-visible:ring-offset-stone-100 dark:focus-visible:ring-offset-stone-950"
+          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8bb82] focus-visible:ring-offset-4 focus-visible:ring-offset-[#06131d]"
         >
-          <div className="relative aspect-[4/3] overflow-hidden border-b border-stone-200 bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.38),_transparent_48%),linear-gradient(135deg,_#134e4a_0%,_#0c0a09_52%,_#1c1917_100%)] dark:border-stone-800">
+          <div className="theme-image-bg relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
           {primaryImage ? (
             <Image
               src={primaryImage.image_url}
@@ -34,12 +35,14 @@ export default function ProductCard({ product }) {
             />
           ) : null}
           <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_0%,rgba(255,255,255,0.12)_35%,transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.05)_0%,rgba(12,10,9,0.2)_35%,rgba(12,10,9,0.88)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,19,29,0.08)_0%,rgba(7,19,29,0.18)_35%,rgba(7,19,29,0.78)_100%)]" />
           <div className="absolute inset-x-0 bottom-0 px-6 py-6 text-stone-50">
-            <p className="relative text-xs uppercase tracking-[0.35em] text-teal-200">
+            <p className="relative text-xs uppercase tracking-[0.35em] text-[#d8bb82]">
               {product.gender ?? "Signature scent"}
             </p>
-            <h2 className="relative mt-3 text-2xl font-semibold tracking-tight">
+            <h2
+              className={`${montserrat.className} relative mt-3 text-2xl font-semibold tracking-tight`}
+            >
               {product.name}
             </h2>
             <p className="relative mt-4 max-w-xs text-sm leading-6 text-stone-200">
@@ -51,31 +54,31 @@ export default function ProductCard({ product }) {
         </Link>
       </div>
 
-      <div className="space-y-5 px-6 py-6">
+      <div className="flex flex-col gap-5 px-2 pb-2 pt-6">
         <div className="flex flex-wrap gap-2">
           {meta.length > 0 ? (
             meta.map((item) => (
               <span
                 key={item}
-                className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium tracking-wide text-stone-700 dark:bg-stone-900 dark:text-stone-200"
+                className="theme-chip rounded-full border px-3 py-1 text-xs font-medium tracking-wide"
               >
                 {item}
               </span>
             ))
           ) : (
-            <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium tracking-wide text-stone-700 dark:bg-stone-900 dark:text-stone-200">
+            <span className="theme-chip rounded-full border px-3 py-1 text-xs font-medium tracking-wide">
               Eau de parfum
             </span>
           )}
         </div>
 
-        <div className="flex items-end justify-between gap-4 border-t border-stone-100 pt-5 dark:border-stone-800">
+        <div className="theme-border flex items-end justify-between gap-4 border-t pt-5">
           <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-stone-500 dark:text-stone-400">
+            <p className="theme-muted text-xs uppercase tracking-[0.28em]">
               Price
             </p>
             <div className="mt-2 flex items-center gap-3">
-              <p className="text-2xl font-semibold tracking-tight text-stone-950 dark:text-white">
+              <p className="theme-heading text-2xl font-semibold tracking-tight">
                 {formatPrice(product.price)}
               </p>
               {product.compare_at_price ? (
@@ -87,10 +90,10 @@ export default function ProductCard({ product }) {
           </div>
 
           <div className="text-right">
-            <p className="text-xs uppercase tracking-[0.28em] text-stone-500 dark:text-stone-400">
+            <p className="theme-muted text-xs uppercase tracking-[0.28em]">
               Stock
             </p>
-            <p className="mt-2 text-sm font-medium text-stone-700 dark:text-stone-200">
+            <p className="theme-muted mt-2 text-sm font-medium">
               {product.stock_quantity > 0
                 ? `${product.stock_quantity} available`
                 : "Out of stock"}
@@ -98,14 +101,14 @@ export default function ProductCard({ product }) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-4 border-t border-stone-100 pt-5 dark:border-stone-800">
+        <div className="theme-border flex items-center justify-between gap-4 border-t pt-5">
           <Link
             href={`/products/${product.slug}`}
-            className="text-sm font-medium text-stone-600 transition hover:text-stone-950 dark:text-stone-300 dark:hover:text-white"
+            className="theme-muted text-sm font-medium transition hover:text-[#e3c995]"
           >
             View details
           </Link>
-          <AddToCartButton product={product} />
+          <AddToCartButton product={product} tone="luxury" />
         </div>
       </div>
     </article>

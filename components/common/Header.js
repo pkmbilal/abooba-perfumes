@@ -6,6 +6,7 @@ import { Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import AuthSessionLinks from "@/components/auth/AuthSessionLinks";
 import { useCart } from "@/components/cart/CartProvider";
+import ThemeToggle from "@/components/common/ThemeToggle";
 
 const navLinks = [
   { name: "Men", href: "/products" },
@@ -34,9 +35,15 @@ export default function Header() {
     <nav
       className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "border-b border-white/10 bg-[#07131d]/92 py-3 shadow-[0_18px_60px_-32px_rgba(0,0,0,0.85)] backdrop-blur-md"
-          : "bg-[#07131d]/70 py-5 backdrop-blur-sm"
+          ? "border-b py-3 shadow-[0_18px_60px_-34px_rgba(0,0,0,0.35)] backdrop-blur-2xl backdrop-saturate-150"
+          : "py-5 backdrop-blur-sm"
       }`}
+      style={{
+        background: isScrolled
+          ? "var(--luxury-header-bg-scrolled)"
+          : "var(--luxury-header-bg)",
+        borderColor: "var(--luxury-header-border)",
+      }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -54,12 +61,12 @@ export default function Header() {
           </div>
 
           <div className="hidden flex-1 items-center justify-center px-8 md:flex">
-            <ul className="flex space-x-10">
+            <ul className="flex gap-10">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="group relative text-sm font-medium uppercase tracking-wide text-slate-200 transition-colors hover:text-[#e3c995]"
+                    className="theme-text group relative text-sm font-medium uppercase tracking-wide transition-colors hover:text-[#e3c995]"
                   >
                     {link.name}
                     <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-[#d8bb82] transition-all duration-300 group-hover:w-full" />
@@ -74,9 +81,11 @@ export default function Header() {
               <AuthSessionLinks />
             </div>
 
+            <ThemeToggle />
+
             <Link
               href="/products"
-              className="text-slate-200 transition-colors hover:text-[#e3c995]"
+              className="theme-text transition-colors hover:text-[#e3c995]"
               aria-label="Browse products"
             >
               <Search size={20} strokeWidth={1.7} />
@@ -84,12 +93,12 @@ export default function Header() {
 
             <Link
               href="/cart"
-              className="group relative text-slate-200 transition-colors hover:text-[#e3c995]"
+              className="theme-text group relative transition-colors hover:text-[#e3c995]"
               aria-label={`View cart with ${itemCount} item${itemCount === 1 ? "" : "s"}`}
             >
               <ShoppingBag size={20} strokeWidth={1.7} />
               {itemCount > 0 ? (
-                <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[linear-gradient(135deg,#d8bb82_0%,#b88942_100%)] px-1 text-[10px] font-bold leading-none text-[#0f1720] transition-transform group-hover:scale-110">
+                <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#7a5525] px-1 text-[10px] font-bold leading-none text-white shadow-[0_8px_18px_-10px_rgba(122,85,37,0.9)] transition-transform group-hover:scale-110 dark:bg-[linear-gradient(135deg,#e3c995_0%,#b88942_100%)] dark:text-[#0f1720]">
                   {itemCount}
                 </span>
               ) : null}
@@ -97,7 +106,7 @@ export default function Header() {
 
             <button
               type="button"
-              className="text-slate-200 transition-colors hover:text-[#e3c995] md:hidden"
+              className="theme-text transition-colors hover:text-[#e3c995] md:hidden"
               onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
               aria-label="Toggle mobile menu"
               aria-controls="mobile-menu"
@@ -115,9 +124,13 @@ export default function Header() {
 
       <div
         id="mobile-menu"
-        className={`absolute left-0 top-full w-full overflow-hidden border-b border-white/10 bg-[#081520]/96 transition-all duration-300 ease-in-out backdrop-blur-xl md:hidden ${
+        className={`absolute left-0 top-full w-full overflow-hidden border-b transition-all duration-300 ease-in-out backdrop-blur-xl md:hidden ${
           isMobileMenuOpen ? "max-h-96 opacity-100 shadow-xl" : "max-h-0 opacity-0"
         }`}
+        style={{
+          background: "var(--luxury-header-bg-scrolled)",
+          borderColor: "var(--luxury-header-border)",
+        }}
       >
         <div className="px-4 py-6">
           <ul className="flex flex-col gap-4">
@@ -126,7 +139,7 @@ export default function Header() {
                 <Link
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-base font-medium uppercase tracking-wide text-slate-100 transition-colors hover:text-[#e3c995]"
+                  className="theme-text block text-base font-medium uppercase tracking-wide transition-colors hover:text-[#e3c995]"
                 >
                   {link.name}
                 </Link>

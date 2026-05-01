@@ -10,11 +10,11 @@ export default function CartLineItem({ item, eagerImage = false }) {
   const lineSubtotal = item.price * item.quantity;
 
   return (
-    <article className="group relative overflow-hidden rounded-[1.5rem] border border-white/70 bg-white/90 p-4 shadow-[0_16px_45px_-30px_rgba(15,118,110,0.22)] backdrop-blur transition duration-300 sm:p-4 dark:border-stone-800 dark:bg-stone-900/85">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.10),_transparent_52%),radial-gradient(circle_at_top_right,_rgba(6,182,212,0.08),_transparent_46%)]" />
+    <article className="theme-panel group relative overflow-hidden rounded-[1.5rem] border p-4 backdrop-blur transition duration-300 sm:p-4">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-[radial-gradient(circle_at_top_left,_rgba(216,187,130,0.12),_transparent_52%),radial-gradient(circle_at_top_right,_rgba(12,109,96,0.14),_transparent_46%)]" />
 
       <div className="relative flex flex-col gap-4 md:flex-row md:items-start md:gap-4">
-        <div className="relative mx-auto h-24 w-full max-w-[120px] shrink-0 overflow-hidden rounded-[1.1rem] bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.18),_transparent_48%),linear-gradient(180deg,_#fafaf9_0%,_#f1f5f9_100%)] sm:mx-0 sm:h-24 sm:max-w-[96px] sm:w-24 lg:h-28 lg:w-28 dark:bg-stone-800">
+        <div className="theme-image-bg relative mx-auto h-24 w-full max-w-[120px] shrink-0 overflow-hidden rounded-[1.1rem] sm:mx-0 sm:h-24 sm:max-w-[96px] sm:w-24 lg:h-28 lg:w-28">
           {item.image ? (
             <Image
               src={item.image.image_url}
@@ -28,16 +28,16 @@ export default function CartLineItem({ item, eagerImage = false }) {
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex flex-col gap-3 pr-10 sm:flex-row sm:items-start sm:justify-between sm:pr-0">
             <div className="min-w-0">
               <Link
                 href={`/products/${item.slug}`}
-                className="line-clamp-2 text-base font-semibold tracking-tight text-stone-950 transition hover:text-teal-700 sm:text-lg lg:text-[1.05rem] dark:text-white dark:hover:text-teal-300"
+                className="theme-heading line-clamp-2 text-base font-semibold tracking-tight transition hover:text-[#e3c995] sm:text-lg lg:text-[1.05rem]"
               >
                 {item.name}
               </Link>
 
-              <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+              <p className="theme-muted mt-1 text-xs">
                 {item.volumeMl
                   ? `Perfume · ${item.volumeMl}ml`
                   : "Signature perfume bottle"}
@@ -47,7 +47,7 @@ export default function CartLineItem({ item, eagerImage = false }) {
             <button
               type="button"
               onClick={() => removeItem(item.id)}
-              className="inline-flex h-9 w-9 shrink-0 items-center justify-center self-start rounded-full border border-stone-200 bg-white/80 text-stone-400 transition hover:border-stone-300 hover:text-stone-700 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-500 dark:hover:text-white"
+              className="absolute right-0 top-0 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#7a5525]/25 bg-[#7a5525]/10 text-[#7a5525] shadow-[0_10px_24px_-18px_rgba(122,85,37,0.85)] transition hover:border-[#7a5525]/40 hover:bg-[#7a5525]/15 hover:text-[#17130c] dark:border-white/10 dark:bg-white/8 dark:text-slate-400 dark:hover:border-[#d8bb82]/35 dark:hover:text-white sm:static sm:self-start"
               aria-label={`Remove ${item.name} from cart`}
             >
               <svg
@@ -67,35 +67,35 @@ export default function CartLineItem({ item, eagerImage = false }) {
             </button>
           </div>
 
-          <div className="mt-4 grid gap-3 rounded-[1rem] bg-stone-50/90 p-3 sm:grid-cols-3 sm:items-center dark:bg-stone-950/70">
+          <div className="theme-chip mt-4 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 rounded-[1rem] border p-3">
             <div>
-              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-400 dark:text-stone-500">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">
                 Unit Price
               </p>
-              <p className="mt-1.5 text-lg font-semibold tracking-tight text-stone-950 sm:text-xl dark:text-white">
+              <p className="theme-heading mt-1.5 text-base font-semibold tracking-tight sm:text-xl">
                 {formatPrice(item.price)}
               </p>
             </div>
 
             <div className="flex justify-center">
-              <div className="inline-flex w-fit items-center rounded-full border border-stone-200 bg-stone-100/90 p-1 dark:border-stone-800 dark:bg-stone-950">
+              <div className="inline-flex w-fit items-center rounded-full border border-[#7a5525]/20 bg-[#7a5525]/8 p-1 dark:border-white/10 dark:bg-white/8">
                 <button
                   type="button"
                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-base text-stone-700 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full text-base font-semibold text-[#7a5525] transition hover:bg-[#7a5525]/10 dark:text-[#e3c995] dark:hover:bg-white/10 sm:h-9 sm:w-9"
                   aria-label={`Decrease quantity for ${item.name}`}
                 >
                   -
                 </button>
 
-                <span className="min-w-[2.5rem] text-center text-sm font-semibold text-teal-700 dark:text-teal-300">
+                <span className="min-w-6 text-center text-sm font-semibold text-[#7a5525] dark:text-[#e3c995] sm:min-w-[2.5rem]">
                   {item.quantity}
                 </span>
 
                 <button
                   type="button"
                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-base text-stone-700 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full text-base font-semibold text-[#7a5525] transition hover:bg-[#7a5525]/10 dark:text-[#e3c995] dark:hover:bg-white/10 sm:h-9 sm:w-9"
                   aria-label={`Increase quantity for ${item.name}`}
                 >
                   +
@@ -103,11 +103,11 @@ export default function CartLineItem({ item, eagerImage = false }) {
               </div>
             </div>
 
-            <div className="sm:text-right">
-              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-400 dark:text-stone-500">
+            <div className="text-right">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">
                 Subtotal
               </p>
-              <p className="mt-1.5 text-xl font-semibold tracking-tight text-teal-700 sm:text-2xl dark:text-teal-300">
+              <p className="mt-1.5 text-base font-semibold tracking-tight text-[#7a5525] dark:text-[#e3c995] sm:text-2xl">
                 {formatPrice(lineSubtotal)}
               </p>
             </div>

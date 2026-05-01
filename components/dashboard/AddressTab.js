@@ -4,15 +4,15 @@ import { MapPinned, Trash2 } from "lucide-react";
 
 function EmptyState({ saveAddressAction }) {
   return (
-    <div className="flex min-h-[320px] items-center justify-center rounded-[1.75rem] border border-dashed border-stone-300 bg-stone-50/80 px-6 py-12 text-center">
+    <div className="theme-panel flex min-h-[320px] items-center justify-center rounded-[1.75rem] border border-dashed px-6 py-12 text-center">
       <div>
-        <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-white text-teal-700 shadow-sm">
+        <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#d8bb82] text-[#0f1720] shadow-sm">
           <MapPinned size={22} />
         </div>
-        <h3 className="mt-5 font-[family:var(--font-dashboard-heading)] text-xl font-semibold text-stone-950">
+        <h3 className="theme-heading mt-5 font-[family:var(--font-dashboard-heading)] text-xl font-semibold">
           Nothing here yet
         </h3>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-stone-600">
+        <p className="theme-muted mx-auto mt-3 max-w-md text-sm leading-7">
           You do not have any saved addresses right now. Add one to make future
           delivery and checkout flows faster.
         </p>
@@ -27,8 +27,8 @@ function EmptyState({ saveAddressAction }) {
 function ActionButton({ children, variant = "secondary", type = "button" }) {
   const classes =
     variant === "danger"
-      ? "border-rose-200 text-rose-700 hover:border-rose-300 hover:bg-rose-50"
-      : "border-stone-200 text-stone-700 hover:border-stone-300 hover:bg-stone-50";
+      ? "border-rose-300/35 text-rose-200 hover:border-rose-300/60 hover:bg-rose-400/10"
+      : "border-white/10 text-slate-200 hover:border-[#d8bb82]/35 hover:bg-white/10";
 
   return (
     <button
@@ -49,7 +49,7 @@ export default function AddressTab({
   const safeAddresses = Array.isArray(addresses) ? addresses : [];
 
   return (
-    <section className="rounded-[1.75rem] border border-stone-200 bg-white p-6 shadow-[0_24px_80px_-50px_rgba(15,118,110,0.35)] sm:p-8">
+    <section className="theme-panel rounded-[1.75rem] border p-6 sm:p-8">
       <DashboardSectionHeader
         eyebrow="Address"
         title="Saved delivery addresses"
@@ -72,22 +72,22 @@ export default function AddressTab({
             {safeAddresses.map((address) => (
               <article
                 key={address.id}
-                className="rounded-[1.6rem] border border-stone-200 bg-stone-50/65 p-5 transition hover:border-teal-100 hover:shadow-[0_18px_45px_-32px_rgba(15,118,110,0.35)]"
+                className="theme-chip rounded-[1.6rem] border p-5 transition hover:border-[#d8bb82]/30"
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <h3 className="text-lg font-semibold text-stone-950">
+                    <h3 className="theme-heading text-lg font-semibold">
                       {address.recipientName || "Not added yet"}
                     </h3>
-                    <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-stone-600">
+                    <div className="theme-muted mt-1 flex flex-wrap items-center gap-2 text-sm">
                       <span>{address.phone || "Not added yet"}</span>
                       {address.label ? (
-                        <span className="rounded-full bg-stone-200 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-stone-700">
+                        <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-200">
                           {address.label}
                         </span>
                       ) : null}
                       {address.addressType ? (
-                        <span className="rounded-full bg-sky-100 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-sky-800">
+                        <span className="rounded-full bg-sky-400/15 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-sky-200">
                           {address.addressType}
                         </span>
                       ) : null}
@@ -95,13 +95,13 @@ export default function AddressTab({
                   </div>
 
                   {address.isDefault ? (
-                    <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-800">
+                    <span className="rounded-full bg-[#d8bb82]/15 px-3 py-1 text-xs font-semibold text-[#e3c995]">
                       Default
                     </span>
                   ) : null}
                 </div>
 
-                <div className="mt-5 space-y-2 text-sm leading-7 text-stone-700">
+                <div className="theme-muted mt-5 flex flex-col gap-2 text-sm leading-7">
                   <p>{address.addressLine1 || "Not added yet"}</p>
                   {address.addressLine2 ? <p>{address.addressLine2}</p> : null}
                   <p>

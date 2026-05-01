@@ -15,14 +15,14 @@ function TabLink({ href, label, isActive, icon: Icon }) {
       className={[
         "inline-flex items-center gap-3 rounded-[1.3rem] border px-4 py-3 text-sm font-medium transition",
         isActive
-          ? "border-teal-200 bg-teal-50 text-teal-900 shadow-[0_16px_36px_-24px_rgba(13,148,136,0.55)]"
-          : "border-stone-200 bg-white text-stone-600 hover:border-teal-100 hover:bg-stone-50 hover:text-stone-950",
+          ? "border-[#d8bb82]/35 bg-[#d8bb82]/12 text-[#997240] shadow-[0_16px_36px_-24px_rgba(216,187,130,0.55)] dark:text-[#e3c995]"
+          : "theme-chip hover:border-[#d8bb82]/25 hover:text-[#997240] dark:hover:text-white",
       ].join(" ")}
     >
       <span
         className={[
           "inline-flex h-9 w-9 items-center justify-center rounded-full",
-          isActive ? "bg-white text-teal-700" : "bg-stone-100 text-stone-500",
+          isActive ? "bg-[#d8bb82] text-[#0f1720]" : "bg-white/8 text-slate-400",
         ].join(" ")}
       >
         <Icon size={17} />
@@ -34,7 +34,7 @@ function TabLink({ href, label, isActive, icon: Icon }) {
 
 export default function DashboardSidebar({ activeTab, tabs }) {
   return (
-    <aside className="space-y-4">
+    <aside className="flex flex-col gap-4">
       <div className="flex gap-3 overflow-x-auto pb-1 lg:hidden">
         {Object.entries(tabs).map(([key, label]) => {
           const Icon = TAB_ICONS[key];
@@ -51,8 +51,8 @@ export default function DashboardSidebar({ activeTab, tabs }) {
         })}
       </div>
 
-      <div className="hidden rounded-[1.75rem] border border-stone-200 bg-stone-50/85 p-3 lg:block">
-        <p className="px-3 pb-3 pt-2 text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">
+      <div className="theme-panel hidden rounded-[1.75rem] border p-3 lg:block">
+        <p className="theme-muted px-3 pb-3 pt-2 text-xs font-semibold uppercase tracking-[0.28em]">
           Dashboard
         </p>
         <nav className="grid gap-2">

@@ -20,17 +20,17 @@ export default function BenefitsSection() {
             return (
               <article
                 key={benefit.title}
-                className="rounded-[1.8rem] border border-white/10 bg-white/6 p-6 text-center shadow-[0_24px_90px_-60px_rgba(0,0,0,0.9)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#d8bb82]/35"
+                className="theme-panel rounded-[1.8rem] border p-6 text-center backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#d8bb82]/35"
               >
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(216,187,130,0.2),rgba(13,83,96,0.2))] text-[#e3c995]">
                   <Icon size={24} />
                 </div>
                 <h3
-                  className={`${montserrat.className} mt-5 text-xl font-semibold tracking-tight text-white`}
+                  className={`${montserrat.className} theme-heading mt-5 text-xl font-semibold tracking-tight`}
                 >
                   {benefit.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-300">
+                <p className="theme-muted mt-3 text-sm leading-7">
                   {benefit.description}
                 </p>
               </article>

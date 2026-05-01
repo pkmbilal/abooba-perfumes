@@ -4,16 +4,16 @@ import { Cake, Image as ImageIcon, Mail, Phone, UserRound, VenusAndMars } from "
 
 function ProfileField({ icon: Icon, label, value }) {
   return (
-    <article className="rounded-[1.5rem] border border-stone-200 bg-stone-50/70 p-5">
+    <article className="theme-chip rounded-[1.5rem] border p-5">
       <div className="flex items-center gap-3">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-teal-700 shadow-sm">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#d8bb82] text-[#0f1720] shadow-sm">
           <Icon size={18} />
         </span>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-stone-500">
+          <p className="theme-muted text-xs font-semibold uppercase tracking-[0.26em]">
             {label}
           </p>
-          <p className="mt-2 text-base font-medium text-stone-950">{value}</p>
+          <p className="theme-heading mt-2 text-base font-medium">{value}</p>
         </div>
       </div>
     </article>
@@ -26,7 +26,7 @@ export default function ProfileTab({
   updateProfileAction,
 }) {
   return (
-    <section className="rounded-[1.75rem] border border-stone-200 bg-white p-6 shadow-[0_24px_80px_-50px_rgba(15,118,110,0.35)] sm:p-8">
+    <section className="theme-panel rounded-[1.75rem] border p-6 sm:p-8">
       <DashboardSectionHeader
         eyebrow="Profile"
         title="Your account details"
@@ -53,7 +53,7 @@ export default function ProfileTab({
         />
         <ProfileField
           icon={ImageIcon}
-          label="Avatar URL"
+          label="Profile image"
           value={profile.avatarUrl}
         />
         <ProfileField
@@ -68,15 +68,15 @@ export default function ProfileTab({
         />
       </div>
 
-      <div className="mt-6 rounded-[1.5rem] border border-stone-200 bg-[linear-gradient(135deg,_rgba(240,253,250,0.9),_rgba(248,250,252,0.95))] p-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.26em] text-stone-500">
+      <div className="theme-chip mt-6 rounded-[1.5rem] border p-5">
+        <p className="theme-muted text-xs font-semibold uppercase tracking-[0.26em]">
           Account status
         </p>
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">
+          <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-semibold text-emerald-200">
             Authenticated
           </span>
-          <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-semibold text-stone-700">
+          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-slate-200">
             {emailConfirmed ? "Email confirmed" : "Email confirmation pending"}
           </span>
         </div>

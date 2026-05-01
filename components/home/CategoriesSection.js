@@ -19,30 +19,30 @@ export default function CategoriesSection() {
           {categories.map((category) => (
             <article
               key={category.title}
-              className="group overflow-hidden rounded-[1.8rem] border border-white/10 bg-white/6 shadow-[0_25px_80px_-58px_rgba(0,0,0,0.9)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#d8bb82]/35"
+              className="theme-panel group overflow-hidden rounded-[1.8rem] border backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#d8bb82]/35"
             >
-              <div className="relative h-72 overflow-hidden">
+              <div className="relative h-72 overflow-hidden bg-[#17130c]">
                 <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(6,19,29,0.02)_0%,rgba(6,19,29,0.08)_28%,rgba(6,19,29,0.72)_100%)]" />
                 <Image
                   src={category.image}
                   alt={category.title}
                   width={700}
                   height={900}
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  className="block h-full w-full object-cover"
                 />
               </div>
               <div className="p-6">
                 <h3
-                  className={`${montserrat.className} text-2xl font-semibold tracking-tight text-white`}
+                  className={`${montserrat.className} theme-heading text-2xl font-semibold tracking-tight`}
                 >
                   {category.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-300">
+                <p className="theme-muted mt-3 text-sm leading-7">
                   {category.description}
                 </p>
                 <Link
                   href="/products"
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#e3c995] transition hover:text-white"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#997240] transition hover:text-[#17130c] dark:text-[#e3c995] dark:hover:text-white"
                 >
                   View collection
                   <ArrowRight size={16} />

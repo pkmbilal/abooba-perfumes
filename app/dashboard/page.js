@@ -1,5 +1,6 @@
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import { montserrat, poppins } from "@/components/home/home-fonts";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import ProfileTab from "@/components/dashboard/ProfileTab";
 import AddressTab from "@/components/dashboard/AddressTab";
@@ -10,7 +11,6 @@ import {
   deleteAddressAction,
   removeFavoriteAction,
 } from "@/app/dashboard/actions";
-import { ADMIN_DASHBOARD_PATH, isAdminUser } from "@/lib/auth/user-role";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -67,7 +67,7 @@ function buildProfileData(profile, user) {
       user?.email ??
       getProfileValue(profile, user, ["email"], "Not added yet"),
     phoneNumber,
-    avatarUrl: avatarUrl || "Not added yet",
+    avatarUrl: avatarUrl ? "Uploaded" : "Not added yet",
     dateOfBirth: dateOfBirth || "Not added yet",
     gender: gender
       ? `${gender.charAt(0).toUpperCase()}${gender.slice(1)}`
@@ -204,10 +204,6 @@ export default async function DashboardPage({ searchParams }) {
     redirect("/login");
   }
 
-  if (isAdminUser(user)) {
-    redirect(ADMIN_DASHBOARD_PATH);
-  }
-
   const activeTab = resolveActiveTab(resolvedSearchParams?.tab);
   const { profile, profileError, addresses, addressesError, favorites, favoritesError } =
     await getDashboardData(user.id);
@@ -221,17 +217,21 @@ export default async function DashboardPage({ searchParams }) {
   return (
     <>
       <Header />
-      <main className="min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.16),_transparent_30%),linear-gradient(180deg,_#f7f7f5_0%,_#ecfeff_100%)] px-4 pb-8 pt-28 sm:px-6 sm:pb-10 sm:pt-32 lg:px-8">
-        <section className="mx-auto max-w-6xl">
-          <div className="rounded-[2rem] border border-stone-200/90 bg-white/80 p-5 shadow-[0_28px_100px_-52px_rgba(15,118,110,0.38)] backdrop-blur sm:p-8">
+      <main
+        className={`${poppins.className} theme-page min-h-[calc(100vh-10rem)] px-4 pb-8 pt-28 sm:px-6 sm:pb-10 sm:pt-32 lg:px-8`}
+      >
+        <section className="mx-auto max-w-7xl">
+          <div className="theme-panel rounded-[2rem] border p-5 backdrop-blur sm:p-8">
             <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-teal-700">
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[#d8bb82]">
                 Account dashboard
               </p>
-              <h1 className="mt-4 font-[family:var(--font-dashboard-heading)] text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
+              <h1
+                className={`${montserrat.className} theme-heading mt-4 text-3xl font-semibold tracking-tight sm:text-4xl`}
+              >
                 Welcome back, {shopperName}
               </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-stone-600 sm:text-base">
+              <p className="theme-muted mt-4 max-w-2xl text-sm leading-7 sm:text-base">
                 Manage your profile details, saved delivery addresses, and
                 favorite fragrances from one elegant space.
               </p>

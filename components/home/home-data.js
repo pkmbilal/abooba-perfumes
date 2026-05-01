@@ -4,26 +4,22 @@ export const categories = [
   {
     title: "Men's Perfumes",
     description: "Bold woods, spices, and refined depth for a lasting impression.",
-    image:
-      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=80",
+    image: "/images/home/men_perfume.webp",
   },
   {
     title: "Women's Perfumes",
     description: "Soft florals, luminous notes, and graceful everyday luxury.",
-    image:
-      "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=80",
+    image: "/images/home/women_perfume.webp",
   },
   {
     title: "Unisex Perfumes",
     description: "Balanced signatures crafted to feel modern, warm, and versatile.",
-    image:
-      "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=900&q=80",
+    image: "/images/home/uisex_perfume.webp",
   },
   {
     title: "Gift Sets",
     description: "Beautifully presented fragrance collections for meaningful gifting.",
-    image:
-      "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=900&q=80",
+    image: "/images/home/gift_sets.webp",
   },
 ];
 

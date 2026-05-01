@@ -30,7 +30,7 @@ export default function InstagramSection({ reels = [] }) {
 
           <Link
             href={INSTAGRAM_ACCOUNT_URL}
-            className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/6 px-5 py-3 text-sm font-semibold text-white transition hover:border-[#d8bb82]/35 hover:bg-white/10"
+            className="theme-chip inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition hover:border-[#d8bb82]/35"
           >
             <ImageIcon size={16} />
             Follow Us on Instagram
@@ -41,7 +41,7 @@ export default function InstagramSection({ reels = [] }) {
           {reels.map((reel, index) => (
             <article
               key={reel.id}
-              className={`group relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-white/6 shadow-[0_22px_90px_-55px_rgba(0,0,0,0.9)] ${
+              className={`theme-panel group relative overflow-hidden rounded-[1.8rem] border ${
                 reelLayoutClasses[index] ?? ""
               }`}
             >
@@ -72,7 +72,7 @@ export default function InstagramSection({ reels = [] }) {
             </article>
           ))}
           {reels.length === 0 ? (
-            <div className="rounded-[1.8rem] border border-white/10 bg-white/6 px-6 py-8 text-sm leading-6 text-slate-300 md:col-span-3">
+            <div className="theme-panel rounded-[1.8rem] border px-6 py-8 text-sm leading-6 theme-muted md:col-span-3">
               Instagram reels will appear here after the Instagram API
               credentials are configured.
             </div>

@@ -105,7 +105,7 @@ export default function AuthSessionLinks() {
       <div className="flex items-center gap-3">
         <Link
           href="/login"
-          className="text-sm font-semibold text-slate-200 transition hover:text-[#e3c995]"
+          className="theme-text text-sm font-semibold transition hover:text-[#e3c995]"
         >
           Login
         </Link>
@@ -129,36 +129,45 @@ export default function AuthSessionLinks() {
         render={
           <button
             type="button"
-            className="inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3 text-sm font-medium text-white shadow-[0_12px_30px_-18px_rgba(0,0,0,0.65)] backdrop-blur transition hover:bg-white/12 aria-expanded:bg-white/12"
+            className="theme-panel inline-flex h-10 items-center gap-2 rounded-full border px-3 text-sm font-medium theme-text backdrop-blur transition hover:border-[#d8bb82]/35"
           />
         }
       >
-        <span className="max-w-24 truncate">{userIsAdmin ? "Admin" : userLabel}</span>
         <Avatar size="sm">
           <AvatarImage src={avatarUrl} alt={userLabel} />
           <AvatarFallback>{getInitials(userLabel)}</AvatarFallback>
         </Avatar>
-        <ChevronDown className="text-[#e3c995]" />
+        <span className="max-w-24 truncate">{userIsAdmin ? "Admin" : userLabel}</span>
+        <ChevronDown className="text-[#7a5525] dark:text-[#e3c995]" />
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="w-56 border border-white/10 bg-[#081520] text-slate-100 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.7)] ring-0"
+        className="theme-panel-strong w-56 border theme-text ring-0"
       >
         <DropdownMenuGroup>
           <DropdownMenuLabel>Signed in as</DropdownMenuLabel>
-          <DropdownMenuItem disabled>
+          <DropdownMenuItem
+            disabled
+            className="theme-muted [&_svg]:text-[#7a5525] dark:[&_svg]:text-[#e3c995]"
+          >
             <User />
             <span className="truncate">{user.email ?? userLabel}</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem render={<Link href={DEFAULT_USER_DASHBOARD_PATH} />}>
+          <DropdownMenuItem
+            render={<Link href={DEFAULT_USER_DASHBOARD_PATH} />}
+            className="theme-text transition hover:bg-[#d8bb82]/12 hover:text-[#7a5525] focus:bg-[#d8bb82]/12 focus:text-[#7a5525] dark:hover:text-[#e3c995] dark:focus:text-[#e3c995] [&_svg]:text-[#7a5525] dark:[&_svg]:text-[#e3c995]"
+          >
             <LayoutDashboard />
             User dashboard
           </DropdownMenuItem>
           {userIsAdmin ? (
-            <DropdownMenuItem render={<Link href={ADMIN_DASHBOARD_PATH} />}>
+            <DropdownMenuItem
+              render={<Link href={ADMIN_DASHBOARD_PATH} />}
+              className="theme-text transition hover:bg-[#d8bb82]/12 hover:text-[#7a5525] focus:bg-[#d8bb82]/12 focus:text-[#7a5525] dark:hover:text-[#e3c995] dark:focus:text-[#e3c995] [&_svg]:text-[#7a5525] dark:[&_svg]:text-[#e3c995]"
+            >
               <Shield />
               Admin dashboard
             </DropdownMenuItem>
@@ -170,6 +179,7 @@ export default function AuthSessionLinks() {
             disabled={isSigningOut}
             onClick={handleSignOut}
             variant="destructive"
+            className="text-red-300 transition hover:bg-red-500/12 hover:text-red-200 focus:bg-red-500/12 focus:text-red-200 [&_svg]:text-red-300"
           >
             <LogOut />
             {isSigningOut ? "Signing out..." : "Logout"}

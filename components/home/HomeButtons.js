@@ -15,7 +15,7 @@ export function SecondaryButton({ href, children }) {
   return (
     <Link
       href={href}
-      className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition duration-300 hover:border-[#d8bb82]/45 hover:bg-white/10"
+      className="theme-chip inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold backdrop-blur transition duration-300 hover:border-[#d8bb82]/45"
     >
       {children}
     </Link>

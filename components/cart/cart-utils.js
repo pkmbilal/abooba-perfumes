@@ -41,6 +41,7 @@ export function buildWhatsAppCheckoutUrl({
   itemCount,
   subtotal,
   totalAmount,
+  deliveryAddress = "",
   phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER,
 }) {
   const sanitizedNumber = sanitizeWhatsAppNumber(phoneNumber);
@@ -71,6 +72,9 @@ export function buildWhatsAppCheckoutUrl({
     `Subtotal: ${formatPrice(subtotal)}`,
     "Delivery fee: Free",
     `Total amount: ${formatPrice(totalAmount)}`,
+    "",
+    "Delivery address:",
+    deliveryAddress.trim(),
   ].join("\n");
 
   return `https://wa.me/${sanitizedNumber}?text=${encodeURIComponent(message)}`;

@@ -1,7 +1,14 @@
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
+import { montserrat, poppins } from "@/components/home/home-fonts";
 import ProductCard from "@/components/products/ProductCard";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+
+export const metadata = {
+  title: "Shop Perfumes | Abooba Perfumes",
+  description:
+    "Shop premium perfumes, signature scents, and elegant fragrance gifts from Abooba Perfumes.",
+};
 
 export default async function ProductsPage() {
   const supabase = await createSupabaseServerClient();
@@ -40,30 +47,47 @@ export default async function ProductsPage() {
 
   return (
     <>
-    <Header />
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.18),_transparent_32%),linear-gradient(180deg,_#f2fbf9_0%,_#f5f5f4_100%)] px-6 pb-24 pt-32 dark:bg-[linear-gradient(180deg,_#0c0a09_0%,_#111827_100%)]">
-      <section className="mx-auto max-w-6xl">
-        <div className="mb-8 max-w-2xl">
-          <p className="text-sm uppercase tracking-[0.35em] text-teal-700 dark:text-teal-300">
-            Abooba Perfumes
-          </p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-stone-950 dark:text-white">
-            Products
-          </h1>
-          <p className="mt-4 text-base leading-7 text-stone-600 dark:text-stone-300">
-            Explore the current fragrance lineup pulled directly from your
-            Supabase products table.
-          </p>
-        </div>
+      <Header />
+      <main
+        className={`${poppins.className} theme-page min-h-screen overflow-hidden`}
+      >
+        <section className="relative px-4 pb-24 pt-32 sm:px-6 sm:pt-36 lg:px-8">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(216,187,130,0.12),_transparent_28%)] dark:bg-[radial-gradient(circle_at_top,_rgba(8,73,66,0.18),_transparent_28%)]" />
+          <div className="relative mx-auto max-w-7xl">
+            <div className="theme-border mb-10 flex flex-col gap-4 border-b pb-6 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[#997240]">
+                  Current Collection
+                </p>
+                <h2
+                  className={`${montserrat.className} theme-heading mt-3 text-3xl font-semibold tracking-tight sm:text-4xl`}
+                >
+                  Available perfumes
+                </h2>
+              </div>
+              <p className="theme-muted text-sm leading-6 sm:max-w-sm sm:text-right">
+                {productsWithFavoriteState.length} fragrance
+                {productsWithFavoriteState.length === 1 ? "" : "s"} ready to
+                browse.
+              </p>
+            </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {productsWithFavoriteState.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
-    </main>
-    <Footer />
+            {productsWithFavoriteState.length > 0 ? (
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {productsWithFavoriteState.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            ) : (
+              <div className="theme-panel rounded-[2rem] border px-6 py-10 text-sm leading-7 theme-muted backdrop-blur">
+                Products will appear here when active fragrances are available
+                in the catalog.
+              </div>
+            )}
+          </div>
+        </section>
+      </main>
+      <Footer />
     </>
   );
 }
