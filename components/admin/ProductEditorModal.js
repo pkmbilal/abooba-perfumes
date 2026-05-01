@@ -166,7 +166,7 @@ export default function ProductEditorModal({ product, saveProductAction }) {
       <OpenButton isEditing={isEditing} onClick={() => setIsOpen(true)} />
 
       {isOpen ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-x-0 bottom-0 top-24 z-40 p-4 sm:top-28 sm:p-6">
           <button
             type="button"
             aria-label="Close product editor"
@@ -178,7 +178,7 @@ export default function ProductEditorModal({ product, saveProductAction }) {
             <div className="absolute bottom-[14%] right-[10%] h-56 w-56 rounded-full bg-cyan-200/20 blur-3xl" />
           </div>
 
-          <div className="relative z-10 w-full max-w-5xl overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-[0_36px_120px_-48px_rgba(15,118,110,0.3)]">
+          <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-[0_36px_120px_-48px_rgba(15,118,110,0.3)]">
             <div className="flex items-start justify-between gap-4 border-b border-stone-200 bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.12),_transparent_55%),linear-gradient(180deg,_#fcfffe_0%,_#f8fafc_100%)] px-5 py-5 sm:px-7">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-teal-700">
@@ -205,7 +205,7 @@ export default function ProductEditorModal({ product, saveProductAction }) {
               </button>
             </div>
 
-            <div className="max-h-[calc(100vh-6rem)] overflow-y-auto px-5 py-5 sm:px-7 sm:py-6">
+            <div className="min-h-0 flex-1 overflow-y-auto px-5 py-5 sm:px-7 sm:py-6">
               <form action={formAction} className="space-y-6">
                 <input type="hidden" name="productId" value={fieldValues.productId} />
                 <input

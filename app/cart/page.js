@@ -10,9 +10,17 @@ export const metadata = {
 
 export default async function CartPage() {
   let recommendedProducts = [];
+  let savedAddresses = [];
+  let isLoggedIn = false;
 
   try {
     const supabase = await createSupabaseServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    isLoggedIn = Boolean(user);
+
     const { data } = await supabase
       .from("products")
       .select(
@@ -23,14 +31,33 @@ export default async function CartPage() {
       .limit(4);
 
     recommendedProducts = data ?? [];
+
+    if (user) {
+      const { data: addresses } = await supabase
+        .from("addresses")
+        .select(
+          "id, label, recipient_name, phone, city, region, postal_code, address_line_1, address_line_2, address_type, is_default"
+        )
+        .eq("user_id", user.id)
+        .order("is_default", { ascending: false })
+        .order("created_at", { ascending: false });
+
+      savedAddresses = addresses ?? [];
+    }
   } catch {
     recommendedProducts = [];
+    savedAddresses = [];
+    isLoggedIn = false;
   }
 
   return (
     <>
       <Header />
-      <CartPageClient recommendedProducts={recommendedProducts} />
+      <CartPageClient
+        recommendedProducts={recommendedProducts}
+        isLoggedIn={isLoggedIn}
+        savedAddresses={savedAddresses}
+      />
       <Footer />
     </>
   );

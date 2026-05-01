@@ -28,7 +28,7 @@ export default function CartLineItem({ item, eagerImage = false }) {
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex flex-col gap-3 pr-10 sm:flex-row sm:items-start sm:justify-between sm:pr-0">
             <div className="min-w-0">
               <Link
                 href={`/products/${item.slug}`}
@@ -47,7 +47,7 @@ export default function CartLineItem({ item, eagerImage = false }) {
             <button
               type="button"
               onClick={() => removeItem(item.id)}
-              className="inline-flex h-9 w-9 shrink-0 items-center justify-center self-start rounded-full border border-white/10 bg-white/8 text-slate-400 transition hover:border-[#d8bb82]/35 hover:text-white"
+              className="absolute right-0 top-0 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#7a5525]/25 bg-[#7a5525]/10 text-[#7a5525] shadow-[0_10px_24px_-18px_rgba(122,85,37,0.85)] transition hover:border-[#7a5525]/40 hover:bg-[#7a5525]/15 hover:text-[#17130c] dark:border-white/10 dark:bg-white/8 dark:text-slate-400 dark:hover:border-[#d8bb82]/35 dark:hover:text-white sm:static sm:self-start"
               aria-label={`Remove ${item.name} from cart`}
             >
               <svg
@@ -67,12 +67,12 @@ export default function CartLineItem({ item, eagerImage = false }) {
             </button>
           </div>
 
-          <div className="theme-chip mt-4 grid gap-3 rounded-[1rem] border p-3 sm:grid-cols-3 sm:items-center">
+          <div className="theme-chip mt-4 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 rounded-[1rem] border p-3">
             <div>
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">
                 Unit Price
               </p>
-              <p className="theme-heading mt-1.5 text-lg font-semibold tracking-tight sm:text-xl">
+              <p className="theme-heading mt-1.5 text-base font-semibold tracking-tight sm:text-xl">
                 {formatPrice(item.price)}
               </p>
             </div>
@@ -82,20 +82,20 @@ export default function CartLineItem({ item, eagerImage = false }) {
                 <button
                   type="button"
                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-base font-semibold text-[#7a5525] transition hover:bg-[#7a5525]/10 dark:text-[#e3c995] dark:hover:bg-white/10"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full text-base font-semibold text-[#7a5525] transition hover:bg-[#7a5525]/10 dark:text-[#e3c995] dark:hover:bg-white/10 sm:h-9 sm:w-9"
                   aria-label={`Decrease quantity for ${item.name}`}
                 >
                   -
                 </button>
 
-                <span className="min-w-[2.5rem] text-center text-sm font-semibold text-[#7a5525] dark:text-[#e3c995]">
+                <span className="min-w-6 text-center text-sm font-semibold text-[#7a5525] dark:text-[#e3c995] sm:min-w-[2.5rem]">
                   {item.quantity}
                 </span>
 
                 <button
                   type="button"
                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-base font-semibold text-[#7a5525] transition hover:bg-[#7a5525]/10 dark:text-[#e3c995] dark:hover:bg-white/10"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full text-base font-semibold text-[#7a5525] transition hover:bg-[#7a5525]/10 dark:text-[#e3c995] dark:hover:bg-white/10 sm:h-9 sm:w-9"
                   aria-label={`Increase quantity for ${item.name}`}
                 >
                   +
@@ -103,11 +103,11 @@ export default function CartLineItem({ item, eagerImage = false }) {
               </div>
             </div>
 
-            <div className="sm:text-right">
+            <div className="text-right">
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">
                 Subtotal
               </p>
-              <p className="mt-1.5 text-xl font-semibold tracking-tight text-[#7a5525] dark:text-[#e3c995] sm:text-2xl">
+              <p className="mt-1.5 text-base font-semibold tracking-tight text-[#7a5525] dark:text-[#e3c995] sm:text-2xl">
                 {formatPrice(lineSubtotal)}
               </p>
             </div>

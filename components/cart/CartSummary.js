@@ -1,6 +1,31 @@
 "use client";
 
+import Link from "next/link";
 import { formatPrice } from "@/components/products/product-utils";
+
+function getAddressLabel(address) {
+  return (
+    address.label ||
+    [
+      address.recipient_name,
+      address.city,
+      address.region,
+    ]
+      .filter(Boolean)
+      .join(" - ") ||
+    "Saved address"
+  );
+}
+
+function getAddressPreview(address) {
+  return [
+    address.address_line_1,
+    address.address_line_2,
+    [address.city, address.region, address.postal_code].filter(Boolean).join(", "),
+  ]
+    .filter(Boolean)
+    .join(", ");
+}
 
 export default function CartSummary({
   itemCount,
@@ -10,7 +35,17 @@ export default function CartSummary({
   onClearCart,
   onProceedToCheckout,
   checkoutDisabledReason,
+  isLoggedIn,
+  savedAddresses,
+  selectedAddressId,
+  onSelectedAddressIdChange,
+  guestAddress,
+  onGuestAddressChange,
 }) {
+  const selectedAddress =
+    savedAddresses.find((address) => address.id === selectedAddressId) ??
+    savedAddresses[0];
+
   return (
     <aside className="xl:sticky xl:top-24 xl:self-start">
       <div className="theme-panel relative overflow-hidden rounded-[1.6rem] border p-5 backdrop-blur">
@@ -38,6 +73,59 @@ export default function CartSummary({
                 Free
               </p>
             </div>
+          </div>
+
+          <div className="theme-border mt-5 border-t pt-4">
+            <p className="theme-heading text-sm font-semibold">
+              Delivery address
+            </p>
+
+            {!isLoggedIn ? (
+              <div className="mt-3">
+                <textarea
+                  value={guestAddress}
+                  onChange={(event) => onGuestAddressChange(event.target.value)}
+                  rows={4}
+                  className="theme-input min-h-28 w-full resize-none rounded-[1rem] border px-3 py-3 text-sm leading-6 outline-none transition focus:border-[#d8bb82]/45"
+                  placeholder="Enter full delivery address"
+                />
+                <p className="theme-muted mt-2 text-xs leading-5">
+                  This address will be included in your WhatsApp order message.
+                </p>
+              </div>
+            ) : savedAddresses.length === 0 ? (
+              <div className="theme-chip mt-3 rounded-[1rem] border p-3">
+                <p className="text-sm font-medium">
+                  Add a saved address before checkout.
+                </p>
+                <Link
+                  href="/dashboard?tab=address"
+                  className="mt-3 inline-flex rounded-full bg-[#7a5525] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#17130c] dark:bg-[#e3c995] dark:text-[#0f1720] dark:hover:bg-white"
+                >
+                  Add address
+                </Link>
+              </div>
+            ) : (
+              <div className="mt-3">
+                <select
+                  value={selectedAddress?.id ?? ""}
+                  onChange={(event) => onSelectedAddressIdChange(event.target.value)}
+                  className="theme-input w-full rounded-full border px-3 py-3 text-sm font-medium outline-none transition focus:border-[#d8bb82]/45"
+                >
+                  {savedAddresses.map((address) => (
+                    <option key={address.id} value={address.id}>
+                      {getAddressLabel(address)}
+                      {address.is_default ? " (Default)" : ""}
+                    </option>
+                  ))}
+                </select>
+                {selectedAddress ? (
+                  <p className="theme-muted mt-3 text-xs leading-6">
+                    {getAddressPreview(selectedAddress)}
+                  </p>
+                ) : null}
+              </div>
+            )}
           </div>
 
           <div className="theme-border mt-5 flex flex-col gap-3 border-t pt-4">

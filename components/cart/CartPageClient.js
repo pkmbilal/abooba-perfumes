@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { buildWhatsAppCheckoutUrl } from "./cart-utils";
 import CartLineItem from "./CartLineItem";
 import CartSummary from "./CartSummary";
@@ -7,22 +8,62 @@ import EmptyCartState from "./EmptyCartState";
 import { useCart } from "./CartProvider";
 import { montserrat, poppins } from "@/components/home/home-fonts";
 
-export default function CartPageClient() {
+function formatAddress(address) {
+  if (!address) {
+    return "";
+  }
+
+  return [
+    address.recipient_name,
+    address.phone,
+    address.address_line_1,
+    address.address_line_2,
+    [address.city, address.region, address.postal_code].filter(Boolean).join(", "),
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export default function CartPageClient({ isLoggedIn = false, savedAddresses = [] }) {
   const { items, itemCount, subtotal, clearCart } = useCart();
+  const [guestAddress, setGuestAddress] = useState("");
+  const [selectedAddressId, setSelectedAddressId] = useState(
+    savedAddresses[0]?.id ?? "",
+  );
   const deliveryFee = 0;
   const totalAmount = subtotal + deliveryFee;
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+  const selectedAddress = useMemo(
+    () =>
+      savedAddresses.find((address) => address.id === selectedAddressId) ??
+      savedAddresses[0] ??
+      null,
+    [savedAddresses, selectedAddressId],
+  );
+  const deliveryAddress = isLoggedIn
+    ? formatAddress(selectedAddress)
+    : guestAddress.trim();
+  const addressDisabledReason =
+    items.length === 0
+      ? ""
+      : isLoggedIn && savedAddresses.length === 0
+        ? "Add a delivery address before checkout."
+        : !isLoggedIn && !deliveryAddress
+          ? "Enter a delivery address before checkout."
+          : "";
   const checkoutUrl = buildWhatsAppCheckoutUrl({
     items,
     itemCount,
     subtotal,
     totalAmount,
+    deliveryAddress,
     phoneNumber: whatsappNumber,
   });
   const checkoutDisabledReason =
-    items.length > 0 && !checkoutUrl
+    addressDisabledReason ||
+    (items.length > 0 && !checkoutUrl
       ? "Add NEXT_PUBLIC_WHATSAPP_NUMBER to enable WhatsApp checkout."
-      : "";
+      : "");
 
   function handleProceedToCheckout() {
     if (!checkoutUrl) {
@@ -74,6 +115,12 @@ export default function CartPageClient() {
             onClearCart={clearCart}
             onProceedToCheckout={handleProceedToCheckout}
             checkoutDisabledReason={checkoutDisabledReason}
+            isLoggedIn={isLoggedIn}
+            savedAddresses={savedAddresses}
+            selectedAddressId={selectedAddressId}
+            onSelectedAddressIdChange={setSelectedAddressId}
+            guestAddress={guestAddress}
+            onGuestAddressChange={setGuestAddress}
           />
         </div>
       </section>

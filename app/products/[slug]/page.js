@@ -181,10 +181,6 @@ export default async function ProductDetailsPage(props) {
                     className="w-full px-7"
                   />
                 </div>
-                <p className="theme-muted text-sm leading-6">
-                  Cart items are saved in this browser so shoppers can keep
-                  browsing and return anytime.
-                </p>
               </div>
 
               <p className="theme-muted mt-8 text-base leading-8">

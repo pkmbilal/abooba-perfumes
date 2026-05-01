@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
+import BackToTopButton from "@/components/common/BackToTopButton";
 import CartShell from "@/components/cart/CartShell";
 import "./globals.css";
 
@@ -49,7 +50,10 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
         className="flex min-h-full flex-col bg-background text-foreground"
       >
-        <CartShell>{children}</CartShell>
+        <CartShell>
+          {children}
+          <BackToTopButton />
+        </CartShell>
       </body>
     </html>
   );
