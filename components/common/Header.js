@@ -98,7 +98,7 @@ export default function Header() {
             >
               <ShoppingBag size={20} strokeWidth={1.7} />
               {itemCount > 0 ? (
-                <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[linear-gradient(135deg,#d8bb82_0%,#b88942_100%)] px-1 text-[10px] font-bold leading-none text-[#0f1720] transition-transform group-hover:scale-110">
+                <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#7a5525] px-1 text-[10px] font-bold leading-none text-white shadow-[0_8px_18px_-10px_rgba(122,85,37,0.9)] transition-transform group-hover:scale-110 dark:bg-[linear-gradient(135deg,#e3c995_0%,#b88942_100%)] dark:text-[#0f1720]">
                   {itemCount}
                 </span>
               ) : null}

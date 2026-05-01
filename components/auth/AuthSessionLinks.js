@@ -138,7 +138,7 @@ export default function AuthSessionLinks() {
           <AvatarFallback>{getInitials(userLabel)}</AvatarFallback>
         </Avatar>
         <span className="max-w-24 truncate">{userIsAdmin ? "Admin" : userLabel}</span>
-        <ChevronDown className="text-[#e3c995]" />
+        <ChevronDown className="text-[#7a5525] dark:text-[#e3c995]" />
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
@@ -148,7 +148,7 @@ export default function AuthSessionLinks() {
           <DropdownMenuLabel>Signed in as</DropdownMenuLabel>
           <DropdownMenuItem
             disabled
-            className="theme-muted [&_svg]:text-[#e3c995]"
+            className="theme-muted [&_svg]:text-[#7a5525] dark:[&_svg]:text-[#e3c995]"
           >
             <User />
             <span className="truncate">{user.email ?? userLabel}</span>
@@ -158,7 +158,7 @@ export default function AuthSessionLinks() {
         <DropdownMenuGroup>
           <DropdownMenuItem
             render={<Link href={DEFAULT_USER_DASHBOARD_PATH} />}
-            className="theme-text transition hover:bg-[#d8bb82]/12 hover:text-[#e3c995] focus:bg-[#d8bb82]/12 focus:text-[#e3c995] [&_svg]:text-[#e3c995]"
+            className="theme-text transition hover:bg-[#d8bb82]/12 hover:text-[#7a5525] focus:bg-[#d8bb82]/12 focus:text-[#7a5525] dark:hover:text-[#e3c995] dark:focus:text-[#e3c995] [&_svg]:text-[#7a5525] dark:[&_svg]:text-[#e3c995]"
           >
             <LayoutDashboard />
             User dashboard
@@ -166,7 +166,7 @@ export default function AuthSessionLinks() {
           {userIsAdmin ? (
             <DropdownMenuItem
               render={<Link href={ADMIN_DASHBOARD_PATH} />}
-              className="theme-text transition hover:bg-[#d8bb82]/12 hover:text-[#e3c995] focus:bg-[#d8bb82]/12 focus:text-[#e3c995] [&_svg]:text-[#e3c995]"
+              className="theme-text transition hover:bg-[#d8bb82]/12 hover:text-[#7a5525] focus:bg-[#d8bb82]/12 focus:text-[#7a5525] dark:hover:text-[#e3c995] dark:focus:text-[#e3c995] [&_svg]:text-[#7a5525] dark:[&_svg]:text-[#e3c995]"
             >
               <Shield />
               Admin dashboard

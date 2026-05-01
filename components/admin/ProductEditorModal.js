@@ -99,7 +99,7 @@ function OpenButton({ isEditing, onClick }) {
       <button
         type="button"
         onClick={onClick}
-        className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:border-stone-300 hover:bg-stone-50"
+        className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-200 bg-white/70 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:border-stone-300 hover:bg-stone-50 dark:border-[#d8bb82]/25 dark:bg-white/5 dark:text-[#e3c995] dark:hover:border-[#d8bb82]/45 dark:hover:bg-[#d8bb82]/10"
       >
         <PencilLine size={15} />
         <span>Edit</span>

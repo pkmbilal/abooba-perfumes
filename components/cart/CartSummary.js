@@ -34,7 +34,7 @@ export default function CartSummary({
               <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500">
                 Delivery
               </p>
-              <p className="mt-1 text-lg font-semibold text-[#e3c995]">
+              <p className="mt-1 text-lg font-semibold text-[#7a5525] dark:text-[#e3c995]">
                 Free
               </p>
             </div>
@@ -49,7 +49,7 @@ export default function CartSummary({
             </div>
             <div className="theme-muted flex items-center justify-between text-sm">
               <span>Delivery fee</span>
-              <span className="font-semibold text-[#e3c995]">
+              <span className="font-semibold text-[#7a5525] dark:text-[#e3c995]">
                 Free
               </span>
             </div>
@@ -63,7 +63,7 @@ export default function CartSummary({
               <span className="theme-heading text-sm font-semibold sm:text-base">
                 Total Amount
               </span>
-              <span className="text-2xl font-semibold tracking-tight text-[#e3c995]">
+              <span className="text-2xl font-semibold tracking-tight text-[#7a5525] dark:text-[#e3c995]">
                 {formatPrice(totalAmount)}
               </span>
             </div>

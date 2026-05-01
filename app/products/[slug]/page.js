@@ -31,7 +31,7 @@ function DetailSection({ label, value }) {
 
   return (
     <div className="theme-chip rounded-[1.5rem] border p-5 backdrop-blur">
-      <p className="text-xs uppercase tracking-[0.3em] text-[#d8bb82]">
+      <p className="text-xs uppercase tracking-[0.3em] text-[#7a5525] dark:text-[#d8bb82]">
         {label}
       </p>
       <p className="theme-muted mt-3 text-base leading-7">
@@ -100,8 +100,8 @@ export default async function ProductDetailsPage(props) {
     >
       <section className="mx-auto max-w-7xl">
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="theme-panel overflow-hidden rounded-[2rem] border p-4 backdrop-blur">
-            <div className="theme-image-bg relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
+          <div className="theme-panel h-full overflow-hidden rounded-[2rem] border p-4 backdrop-blur">
+            <div className="theme-image-bg relative aspect-[4/5] overflow-hidden rounded-[1.5rem] lg:h-full lg:aspect-auto">
               {primaryImage ? (
                 <Image
                   src={primaryImage.image_url}
@@ -174,11 +174,13 @@ export default async function ProductDetailsPage(props) {
               </div>
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <AddToCartButton
-                  product={product}
-                  tone="luxury"
-                  className="min-w-[12rem] px-7"
-                />
+                <div className="min-w-[12rem]">
+                  <AddToCartButton
+                    product={product}
+                    tone="luxury"
+                    className="w-full px-7"
+                  />
+                </div>
                 <p className="theme-muted text-sm leading-6">
                   Cart items are saved in this browser so shoppers can keep
                   browsing and return anytime.

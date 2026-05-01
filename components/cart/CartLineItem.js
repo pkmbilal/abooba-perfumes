@@ -78,24 +78,24 @@ export default function CartLineItem({ item, eagerImage = false }) {
             </div>
 
             <div className="flex justify-center">
-              <div className="inline-flex w-fit items-center rounded-full border border-white/10 bg-white/8 p-1">
+              <div className="inline-flex w-fit items-center rounded-full border border-[#7a5525]/20 bg-[#7a5525]/8 p-1 dark:border-white/10 dark:bg-white/8">
                 <button
                   type="button"
                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-base text-slate-200 transition hover:bg-white/10"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-base font-semibold text-[#7a5525] transition hover:bg-[#7a5525]/10 dark:text-[#e3c995] dark:hover:bg-white/10"
                   aria-label={`Decrease quantity for ${item.name}`}
                 >
                   -
                 </button>
 
-                <span className="min-w-[2.5rem] text-center text-sm font-semibold text-[#e3c995]">
+                <span className="min-w-[2.5rem] text-center text-sm font-semibold text-[#7a5525] dark:text-[#e3c995]">
                   {item.quantity}
                 </span>
 
                 <button
                   type="button"
                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-base text-slate-200 transition hover:bg-white/10"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-base font-semibold text-[#7a5525] transition hover:bg-[#7a5525]/10 dark:text-[#e3c995] dark:hover:bg-white/10"
                   aria-label={`Increase quantity for ${item.name}`}
                 >
                   +
@@ -107,7 +107,7 @@ export default function CartLineItem({ item, eagerImage = false }) {
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">
                 Subtotal
               </p>
-              <p className="mt-1.5 text-xl font-semibold tracking-tight text-[#e3c995] sm:text-2xl">
+              <p className="mt-1.5 text-xl font-semibold tracking-tight text-[#7a5525] dark:text-[#e3c995] sm:text-2xl">
                 {formatPrice(lineSubtotal)}
               </p>
             </div>

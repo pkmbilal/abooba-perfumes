@@ -57,25 +57,25 @@ export default function AddToCartButton({
 
     return (
       <div
-        className={`inline-flex items-center rounded-full border p-1 text-sm font-semibold ${quantityClassName} ${className}`}
+        className={`inline-flex items-center rounded-full border p-1 text-sm font-semibold ${quantityClassName}`}
         aria-label={`${product.name} quantity in cart`}
       >
         <button
           type="button"
           onClick={handleDecrease}
-          className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-lg transition ${quantityButtonClassName}`}
+          className={`inline-flex h-9 w-9 items-center justify-center rounded-full text-lg transition ${quantityButtonClassName}`}
           aria-label={`Decrease ${product.name} quantity`}
         >
           -
         </button>
-        <span className="min-w-10 text-center text-sm tracking-[0.12em]">
+        <span className="min-w-9 text-center text-sm tracking-[0.12em]">
           {currentQuantity}
         </span>
         <button
           type="button"
           onClick={handleIncrease}
           disabled={currentQuantity >= maxQuantity}
-          className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-lg transition disabled:cursor-not-allowed disabled:opacity-40 ${quantityButtonClassName}`}
+          className={`inline-flex h-9 w-9 items-center justify-center rounded-full text-lg transition disabled:cursor-not-allowed disabled:opacity-40 ${quantityButtonClassName}`}
           aria-label={`Increase ${product.name} quantity`}
         >
           +

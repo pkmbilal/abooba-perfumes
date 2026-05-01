@@ -38,7 +38,7 @@ export default function CartPageClient() {
     >
       <section className="mx-auto max-w-7xl">
         <div className="mb-10 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.38em] text-[#d8bb82]">
+          <p className="text-xs font-semibold uppercase tracking-[0.38em] text-[#7a5525] dark:text-[#d8bb82]">
             Your Cart
           </p>
           <h1
