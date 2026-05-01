@@ -14,7 +14,7 @@ export default function ProductCard({ product }) {
   const primaryImage = getPrimaryImage(product);
 
   return (
-    <article className="group overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.04)_100%)] p-4 shadow-[0_28px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#d8bb82]/35">
+    <article className="theme-panel group overflow-hidden rounded-[2rem] border p-4 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#d8bb82]/35">
       <div className="relative">
         <FavoriteButton
           productId={product.id}
@@ -24,7 +24,7 @@ export default function ProductCard({ product }) {
           href={`/products/${product.slug}`}
           className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8bb82] focus-visible:ring-offset-4 focus-visible:ring-offset-[#06131d]"
         >
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-[radial-gradient(circle_at_top,_rgba(216,187,130,0.2),_transparent_44%),linear-gradient(135deg,_#11313b_0%,_#07131d_65%,_#0f1720_100%)]">
+          <div className="theme-image-bg relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
           {primaryImage ? (
             <Image
               src={primaryImage.image_url}
@@ -60,25 +60,25 @@ export default function ProductCard({ product }) {
             meta.map((item) => (
               <span
                 key={item}
-                className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-medium tracking-wide text-slate-200"
+                className="theme-chip rounded-full border px-3 py-1 text-xs font-medium tracking-wide"
               >
                 {item}
               </span>
             ))
           ) : (
-            <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-medium tracking-wide text-slate-200">
+            <span className="theme-chip rounded-full border px-3 py-1 text-xs font-medium tracking-wide">
               Eau de parfum
             </span>
           )}
         </div>
 
-        <div className="flex items-end justify-between gap-4 border-t border-white/10 pt-5">
+        <div className="theme-border flex items-end justify-between gap-4 border-t pt-5">
           <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-slate-400">
+            <p className="theme-muted text-xs uppercase tracking-[0.28em]">
               Price
             </p>
             <div className="mt-2 flex items-center gap-3">
-              <p className="text-2xl font-semibold tracking-tight text-white">
+              <p className="theme-heading text-2xl font-semibold tracking-tight">
                 {formatPrice(product.price)}
               </p>
               {product.compare_at_price ? (
@@ -90,10 +90,10 @@ export default function ProductCard({ product }) {
           </div>
 
           <div className="text-right">
-            <p className="text-xs uppercase tracking-[0.28em] text-slate-400">
+            <p className="theme-muted text-xs uppercase tracking-[0.28em]">
               Stock
             </p>
-            <p className="mt-2 text-sm font-medium text-slate-200">
+            <p className="theme-muted mt-2 text-sm font-medium">
               {product.stock_quantity > 0
                 ? `${product.stock_quantity} available`
                 : "Out of stock"}
@@ -101,10 +101,10 @@ export default function ProductCard({ product }) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-5">
+        <div className="theme-border flex items-center justify-between gap-4 border-t pt-5">
           <Link
             href={`/products/${product.slug}`}
-            className="text-sm font-medium text-slate-300 transition hover:text-[#e3c995]"
+            className="theme-muted text-sm font-medium transition hover:text-[#e3c995]"
           >
             View details
           </Link>

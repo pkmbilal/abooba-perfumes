@@ -16,7 +16,7 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial) => (
             <article
               key={testimonial.name}
-              className="rounded-[1.8rem] border border-white/10 bg-white/6 p-7 shadow-[0_24px_90px_-60px_rgba(0,0,0,0.92)] backdrop-blur"
+              className="theme-panel rounded-[1.8rem] border p-7 backdrop-blur"
             >
               <div className="flex gap-1 text-[#e3c995]">
                 {Array.from({ length: 5 }).map((_, index) => (
@@ -27,12 +27,12 @@ export default function TestimonialsSection() {
                   />
                 ))}
               </div>
-              <p className="mt-6 text-base leading-8 text-slate-200">
+              <p className="theme-muted mt-6 text-base leading-8">
                 &quot;{testimonial.quote}&quot;
               </p>
-              <div className="mt-8 border-t border-white/10 pt-5">
-                <p className="font-semibold text-white">{testimonial.name}</p>
-                <p className="mt-1 text-sm text-slate-400">
+              <div className="theme-border mt-8 border-t pt-5">
+                <p className="theme-heading font-semibold">{testimonial.name}</p>
+                <p className="theme-muted mt-1 text-sm">
                   {testimonial.title}
                 </p>
               </div>

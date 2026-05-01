@@ -42,7 +42,7 @@ export default async function Home() {
       <Header />
 
       <main
-        className={`${poppins.className} overflow-hidden bg-[#06131d] text-white`}
+        className={`${poppins.className} theme-page overflow-hidden`}
       >
         <HeroSection />
         <CategoriesSection />

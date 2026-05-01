@@ -10,11 +10,11 @@ export default function CartLineItem({ item, eagerImage = false }) {
   const lineSubtotal = item.price * item.quantity;
 
   return (
-    <article className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/6 p-4 shadow-[0_24px_80px_-55px_rgba(0,0,0,0.85)] backdrop-blur transition duration-300 sm:p-4">
+    <article className="theme-panel group relative overflow-hidden rounded-[1.5rem] border p-4 backdrop-blur transition duration-300 sm:p-4">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-[radial-gradient(circle_at_top_left,_rgba(216,187,130,0.12),_transparent_52%),radial-gradient(circle_at_top_right,_rgba(12,109,96,0.14),_transparent_46%)]" />
 
       <div className="relative flex flex-col gap-4 md:flex-row md:items-start md:gap-4">
-        <div className="relative mx-auto h-24 w-full max-w-[120px] shrink-0 overflow-hidden rounded-[1.1rem] bg-[radial-gradient(circle_at_top,_rgba(216,187,130,0.2),_transparent_44%),linear-gradient(135deg,_#11313b_0%,_#07131d_65%,_#0f1720_100%)] sm:mx-0 sm:h-24 sm:max-w-[96px] sm:w-24 lg:h-28 lg:w-28">
+        <div className="theme-image-bg relative mx-auto h-24 w-full max-w-[120px] shrink-0 overflow-hidden rounded-[1.1rem] sm:mx-0 sm:h-24 sm:max-w-[96px] sm:w-24 lg:h-28 lg:w-28">
           {item.image ? (
             <Image
               src={item.image.image_url}
@@ -32,12 +32,12 @@ export default function CartLineItem({ item, eagerImage = false }) {
             <div className="min-w-0">
               <Link
                 href={`/products/${item.slug}`}
-                className="line-clamp-2 text-base font-semibold tracking-tight text-white transition hover:text-[#e3c995] sm:text-lg lg:text-[1.05rem]"
+                className="theme-heading line-clamp-2 text-base font-semibold tracking-tight transition hover:text-[#e3c995] sm:text-lg lg:text-[1.05rem]"
               >
                 {item.name}
               </Link>
 
-              <p className="mt-1 text-xs text-slate-400">
+              <p className="theme-muted mt-1 text-xs">
                 {item.volumeMl
                   ? `Perfume · ${item.volumeMl}ml`
                   : "Signature perfume bottle"}
@@ -67,12 +67,12 @@ export default function CartLineItem({ item, eagerImage = false }) {
             </button>
           </div>
 
-          <div className="mt-4 grid gap-3 rounded-[1rem] border border-white/8 bg-white/6 p-3 sm:grid-cols-3 sm:items-center">
+          <div className="theme-chip mt-4 grid gap-3 rounded-[1rem] border p-3 sm:grid-cols-3 sm:items-center">
             <div>
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">
                 Unit Price
               </p>
-              <p className="mt-1.5 text-lg font-semibold tracking-tight text-white sm:text-xl">
+              <p className="theme-heading mt-1.5 text-lg font-semibold tracking-tight sm:text-xl">
                 {formatPrice(item.price)}
               </p>
             </div>

@@ -30,11 +30,11 @@ function DetailSection({ label, value }) {
   }
 
   return (
-    <div className="rounded-[1.5rem] border border-white/10 bg-white/6 p-5 backdrop-blur">
+    <div className="theme-chip rounded-[1.5rem] border p-5 backdrop-blur">
       <p className="text-xs uppercase tracking-[0.3em] text-[#d8bb82]">
         {label}
       </p>
-      <p className="mt-3 text-base leading-7 text-slate-200">
+      <p className="theme-muted mt-3 text-base leading-7">
         {value}
       </p>
     </div>
@@ -96,12 +96,12 @@ export default async function ProductDetailsPage(props) {
     <>
     <Header />
     <main
-      className={`${poppins.className} min-h-screen bg-[radial-gradient(circle_at_18%_12%,rgba(12,109,96,0.24),transparent_32%),radial-gradient(circle_at_88%_4%,rgba(216,187,130,0.14),transparent_28%),linear-gradient(180deg,#07131d_0%,#06131d_64%,#081119_100%)] px-6 pb-16 pt-28 text-white sm:pt-32`}
+      className={`${poppins.className} theme-page min-h-screen px-6 pb-16 pt-28 sm:pt-32`}
     >
       <section className="mx-auto max-w-7xl">
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.04)_100%)] p-4 shadow-[0_28px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[radial-gradient(circle_at_top,_rgba(216,187,130,0.2),_transparent_44%),linear-gradient(135deg,_#11313b_0%,_#07131d_65%,_#0f1720_100%)]">
+          <div className="theme-panel overflow-hidden rounded-[2rem] border p-4 backdrop-blur">
+            <div className="theme-image-bg relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
               {primaryImage ? (
                 <Image
                   src={primaryImage.image_url}
@@ -117,7 +117,7 @@ export default async function ProductDetailsPage(props) {
                 <p className="text-sm uppercase tracking-[0.38em] text-[#d8bb82]">
                   {product.brand ?? "Abooba Perfumes"}
                 </p>
-                <h1 className={`${montserrat.className} mt-4 text-4xl font-semibold tracking-tight sm:text-5xl`}>
+                <h1 className={`${montserrat.className} mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl`}>
                   {product.name}
                 </h1>
                 <p className="mt-4 max-w-xl text-base leading-7 text-stone-200">
@@ -129,12 +129,12 @@ export default async function ProductDetailsPage(props) {
           </div>
 
           <div className="flex flex-col gap-6">
-            <div className="rounded-[2rem] border border-white/10 bg-white/6 p-7 shadow-[0_28px_100px_-64px_rgba(0,0,0,0.85)] backdrop-blur">
+            <div className="theme-panel rounded-[2rem] border p-7 backdrop-blur">
               <div className="flex flex-wrap gap-2">
                 {meta.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-medium tracking-wide text-slate-200"
+                    className="theme-chip rounded-full border px-3 py-1 text-xs font-medium tracking-wide"
                   >
                     {item}
                   </span>
@@ -142,7 +142,7 @@ export default async function ProductDetailsPage(props) {
               </div>
 
               <div className="mt-6 flex items-end gap-4">
-                <p className="text-4xl font-semibold tracking-tight text-white">
+                <p className="theme-heading text-4xl font-semibold tracking-tight">
                   {formatPrice(product.price)}
                 </p>
                 {product.compare_at_price ? (
@@ -152,22 +152,22 @@ export default async function ProductDetailsPage(props) {
                 ) : null}
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-300">
+              <div className="theme-muted mt-6 flex flex-wrap gap-4 text-sm">
                 <p>
                   Status:{" "}
-                  <span className="font-medium text-white">
+                  <span className="theme-heading font-medium">
                     {product.stock_quantity > 0 ? "In stock" : "Out of stock"}
                   </span>
                 </p>
                 <p>
                   SKU:{" "}
-                  <span className="font-medium text-white">
+                  <span className="theme-heading font-medium">
                     {product.sku ?? "Not assigned"}
                   </span>
                 </p>
                 <p>
                   Gender:{" "}
-                  <span className="font-medium capitalize text-white">
+                  <span className="theme-heading font-medium capitalize">
                     {product.gender ?? "Unisex"}
                   </span>
                 </p>
@@ -179,13 +179,13 @@ export default async function ProductDetailsPage(props) {
                   tone="luxury"
                   className="min-w-[12rem] px-7"
                 />
-                <p className="text-sm leading-6 text-slate-400">
+                <p className="theme-muted text-sm leading-6">
                   Cart items are saved in this browser so shoppers can keep
                   browsing and return anytime.
                 </p>
               </div>
 
-              <p className="mt-8 text-base leading-8 text-slate-200">
+              <p className="theme-muted mt-8 text-base leading-8">
                 {product.description ??
                   "This fragrance balances a luminous opening with a deeper heart and smooth, long-lasting base."}
               </p>

@@ -4,15 +4,15 @@ import { MapPinned, Trash2 } from "lucide-react";
 
 function EmptyState({ saveAddressAction }) {
   return (
-    <div className="flex min-h-[320px] items-center justify-center rounded-[1.75rem] border border-dashed border-white/20 bg-white/6 px-6 py-12 text-center">
+    <div className="theme-panel flex min-h-[320px] items-center justify-center rounded-[1.75rem] border border-dashed px-6 py-12 text-center">
       <div>
         <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#d8bb82] text-[#0f1720] shadow-sm">
           <MapPinned size={22} />
         </div>
-        <h3 className="mt-5 font-[family:var(--font-dashboard-heading)] text-xl font-semibold text-white">
+        <h3 className="theme-heading mt-5 font-[family:var(--font-dashboard-heading)] text-xl font-semibold">
           Nothing here yet
         </h3>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-slate-300">
+        <p className="theme-muted mx-auto mt-3 max-w-md text-sm leading-7">
           You do not have any saved addresses right now. Add one to make future
           delivery and checkout flows faster.
         </p>
@@ -49,7 +49,7 @@ export default function AddressTab({
   const safeAddresses = Array.isArray(addresses) ? addresses : [];
 
   return (
-    <section className="rounded-[1.75rem] border border-white/10 bg-white/6 p-6 shadow-[0_24px_80px_-60px_rgba(0,0,0,0.85)] sm:p-8">
+    <section className="theme-panel rounded-[1.75rem] border p-6 sm:p-8">
       <DashboardSectionHeader
         eyebrow="Address"
         title="Saved delivery addresses"
@@ -72,14 +72,14 @@ export default function AddressTab({
             {safeAddresses.map((address) => (
               <article
                 key={address.id}
-                className="rounded-[1.6rem] border border-white/10 bg-white/6 p-5 transition hover:border-[#d8bb82]/30 hover:bg-white/8"
+                className="theme-chip rounded-[1.6rem] border p-5 transition hover:border-[#d8bb82]/30"
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="theme-heading text-lg font-semibold">
                       {address.recipientName || "Not added yet"}
                     </h3>
-                    <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-slate-300">
+                    <div className="theme-muted mt-1 flex flex-wrap items-center gap-2 text-sm">
                       <span>{address.phone || "Not added yet"}</span>
                       {address.label ? (
                         <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-200">
@@ -101,7 +101,7 @@ export default function AddressTab({
                   ) : null}
                 </div>
 
-                <div className="mt-5 flex flex-col gap-2 text-sm leading-7 text-slate-300">
+                <div className="theme-muted mt-5 flex flex-col gap-2 text-sm leading-7">
                   <p>{address.addressLine1 || "Not added yet"}</p>
                   {address.addressLine2 ? <p>{address.addressLine2}</p> : null}
                   <p>

@@ -15,8 +15,8 @@ function TabLink({ href, label, isActive, icon: Icon }) {
       className={[
         "inline-flex items-center gap-3 rounded-[1.3rem] border px-4 py-3 text-sm font-medium transition",
         isActive
-          ? "border-[#d8bb82]/35 bg-[#d8bb82]/12 text-[#e3c995] shadow-[0_16px_36px_-24px_rgba(216,187,130,0.55)]"
-          : "border-white/10 bg-white/6 text-slate-300 hover:border-[#d8bb82]/25 hover:bg-white/10 hover:text-white",
+          ? "border-[#d8bb82]/35 bg-[#d8bb82]/12 text-[#997240] shadow-[0_16px_36px_-24px_rgba(216,187,130,0.55)] dark:text-[#e3c995]"
+          : "theme-chip hover:border-[#d8bb82]/25 hover:text-[#997240] dark:hover:text-white",
       ].join(" ")}
     >
       <span
@@ -51,8 +51,8 @@ export default function DashboardSidebar({ activeTab, tabs }) {
         })}
       </div>
 
-      <div className="hidden rounded-[1.75rem] border border-white/10 bg-white/6 p-3 lg:block">
-        <p className="px-3 pb-3 pt-2 text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+      <div className="theme-panel hidden rounded-[1.75rem] border p-3 lg:block">
+        <p className="theme-muted px-3 pb-3 pt-2 text-xs font-semibold uppercase tracking-[0.28em]">
           Dashboard
         </p>
         <nav className="grid gap-2">

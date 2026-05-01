@@ -118,24 +118,24 @@ export default function AuthForm({ mode, errorCode = "" }) {
   }
 
   return (
-    <section className="w-full max-w-md rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.09)_0%,rgba(255,255,255,0.05)_100%)] p-8 shadow-[0_28px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur sm:p-10">
+    <section className="theme-panel w-full max-w-md rounded-[2rem] border p-8 backdrop-blur sm:p-10">
       <div className="flex flex-col gap-3">
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#d8bb82]">
           {copy.eyebrow}
         </p>
         <h1
-          className={`${montserrat.className} text-3xl font-semibold tracking-tight text-white`}
+          className={`${montserrat.className} theme-heading text-3xl font-semibold tracking-tight`}
         >
           {copy.title}
         </h1>
-        <p className="text-sm leading-6 text-slate-300">{copy.description}</p>
+        <p className="theme-muted text-sm leading-6">{copy.description}</p>
       </div>
 
       <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
         <div className="flex flex-col gap-2">
           <label
             htmlFor={`${mode}-email`}
-            className="text-sm font-medium text-slate-200"
+            className="theme-text text-sm font-medium"
           >
             Email address
           </label>
@@ -146,7 +146,7 @@ export default function AuthForm({ mode, errorCode = "" }) {
             onChange={(event) => setEmail(event.target.value)}
             autoComplete="email"
             required
-            className="w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-[#d8bb82]/60 focus:ring-2 focus:ring-[#d8bb82]/20"
+            className="theme-input w-full rounded-2xl border px-4 py-3 text-sm outline-none transition placeholder:text-slate-500 focus:border-[#d8bb82]/60 focus:ring-2 focus:ring-[#d8bb82]/20"
             placeholder="you@example.com"
           />
         </div>
@@ -154,7 +154,7 @@ export default function AuthForm({ mode, errorCode = "" }) {
         <div className="flex flex-col gap-2">
           <label
             htmlFor={`${mode}-password`}
-            className="text-sm font-medium text-slate-200"
+            className="theme-text text-sm font-medium"
           >
             Password
           </label>
@@ -166,7 +166,7 @@ export default function AuthForm({ mode, errorCode = "" }) {
             autoComplete={mode === "login" ? "current-password" : "new-password"}
             required
             minLength={6}
-            className="w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-[#d8bb82]/60 focus:ring-2 focus:ring-[#d8bb82]/20"
+            className="theme-input w-full rounded-2xl border px-4 py-3 text-sm outline-none transition placeholder:text-slate-500 focus:border-[#d8bb82]/60 focus:ring-2 focus:ring-[#d8bb82]/20"
             placeholder="Minimum 6 characters"
           />
         </div>
@@ -192,7 +192,7 @@ export default function AuthForm({ mode, errorCode = "" }) {
         </button>
       </form>
 
-      <p className="mt-6 text-sm text-slate-300">
+      <p className="theme-muted mt-6 text-sm">
         {copy.alternatePrompt}{" "}
         <Link
           href={copy.alternateHref}

@@ -9,14 +9,14 @@ import {
 
 function EmptyState() {
   return (
-    <div className="rounded-[1.75rem] border border-dashed border-white/20 bg-white/6 px-6 py-12 text-center">
+    <div className="theme-panel rounded-[1.75rem] border border-dashed px-6 py-12 text-center">
       <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#d8bb82] text-[#0f1720] shadow-sm">
         <HeartOff size={22} />
       </div>
-      <h3 className="mt-5 font-[family:var(--font-dashboard-heading)] text-xl font-semibold text-white">
+      <h3 className="theme-heading mt-5 font-[family:var(--font-dashboard-heading)] text-xl font-semibold">
         No favorites saved yet
       </h3>
-      <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-slate-300">
+      <p className="theme-muted mx-auto mt-3 max-w-md text-sm leading-7">
         When you save fragrances you love, they will appear here for quicker
         browsing and buying later.
       </p>
@@ -30,7 +30,7 @@ export default function FavoritesTab({
   removeFavoriteAction,
 }) {
   return (
-    <section className="rounded-[1.75rem] border border-white/10 bg-white/6 p-6 shadow-[0_24px_80px_-60px_rgba(0,0,0,0.85)] sm:p-8">
+    <section className="theme-panel rounded-[1.75rem] border p-6 sm:p-8">
       <DashboardSectionHeader
         eyebrow="Favorites"
         title="Your saved fragrances"
@@ -55,7 +55,7 @@ export default function FavoritesTab({
               return (
                 <article
                   key={id}
-                  className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/6 transition hover:border-[#d8bb82]/30 hover:bg-white/8"
+                  className="theme-chip overflow-hidden rounded-[1.6rem] border transition hover:border-[#d8bb82]/30"
                 >
                   <div className="relative aspect-[4/3] border-b border-stone-200 bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.3),_transparent_45%),linear-gradient(135deg,_#134e4a_0%,_#0f172a_100%)]">
                     {image ? (
@@ -72,13 +72,13 @@ export default function FavoritesTab({
 
                   <div className="flex flex-col gap-4 p-5">
                     <div>
-                      <h3 className="text-lg font-semibold text-white">
+                      <h3 className="theme-heading text-lg font-semibold">
                         {product.name}
                       </h3>
                       <p className="mt-2 text-base font-semibold text-[#e3c995]">
                         {formatPrice(product.price)}
                       </p>
-                      <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-300">
+                      <p className="theme-muted mt-3 line-clamp-3 text-sm leading-6">
                         {product.short_description ||
                           "A refined fragrance from the Abooba Perfumes collection."}
                       </p>

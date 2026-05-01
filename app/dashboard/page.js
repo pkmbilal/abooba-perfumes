@@ -218,20 +218,20 @@ export default async function DashboardPage({ searchParams }) {
     <>
       <Header />
       <main
-        className={`${poppins.className} min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_18%_12%,rgba(12,109,96,0.24),transparent_32%),radial-gradient(circle_at_88%_4%,rgba(216,187,130,0.14),transparent_28%),linear-gradient(180deg,#07131d_0%,#06131d_64%,#081119_100%)] px-4 pb-8 pt-28 text-white sm:px-6 sm:pb-10 sm:pt-32 lg:px-8`}
+        className={`${poppins.className} theme-page min-h-[calc(100vh-10rem)] px-4 pb-8 pt-28 sm:px-6 sm:pb-10 sm:pt-32 lg:px-8`}
       >
         <section className="mx-auto max-w-7xl">
-          <div className="rounded-[2rem] border border-white/10 bg-white/6 p-5 shadow-[0_28px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur sm:p-8">
+          <div className="theme-panel rounded-[2rem] border p-5 backdrop-blur sm:p-8">
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[#d8bb82]">
                 Account dashboard
               </p>
               <h1
-                className={`${montserrat.className} mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl`}
+                className={`${montserrat.className} theme-heading mt-4 text-3xl font-semibold tracking-tight sm:text-4xl`}
               >
                 Welcome back, {shopperName}
               </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+              <p className="theme-muted mt-4 max-w-2xl text-sm leading-7 sm:text-base">
                 Manage your profile details, saved delivery addresses, and
                 favorite fragrances from one elegant space.
               </p>

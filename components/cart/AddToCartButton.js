@@ -48,7 +48,7 @@ export default function AddToCartButton({
   if (currentQuantity > 0) {
     const quantityClassName =
       tone === "luxury"
-        ? "border-white/12 bg-white/6 text-white"
+        ? "theme-chip"
         : "border-stone-200 bg-stone-50 text-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-white";
     const quantityButtonClassName =
       tone === "luxury"

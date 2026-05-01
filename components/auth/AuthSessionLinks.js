@@ -105,7 +105,7 @@ export default function AuthSessionLinks() {
       <div className="flex items-center gap-3">
         <Link
           href="/login"
-          className="text-sm font-semibold text-slate-200 transition hover:text-[#e3c995]"
+          className="theme-text text-sm font-semibold transition hover:text-[#e3c995]"
         >
           Login
         </Link>
@@ -129,7 +129,7 @@ export default function AuthSessionLinks() {
         render={
           <button
             type="button"
-            className="inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3 text-sm font-medium text-white shadow-[0_12px_30px_-18px_rgba(0,0,0,0.65)] backdrop-blur transition hover:bg-white/12 aria-expanded:bg-white/12"
+            className="theme-panel inline-flex h-10 items-center gap-2 rounded-full border px-3 text-sm font-medium theme-text backdrop-blur transition hover:border-[#d8bb82]/35"
           />
         }
       >
@@ -142,13 +142,13 @@ export default function AuthSessionLinks() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="w-56 border border-white/10 bg-[#081520] text-slate-100 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.7)] ring-0"
+        className="theme-panel-strong w-56 border theme-text ring-0"
       >
         <DropdownMenuGroup>
           <DropdownMenuLabel>Signed in as</DropdownMenuLabel>
           <DropdownMenuItem
             disabled
-            className="text-slate-300 [&_svg]:text-[#e3c995]"
+            className="theme-muted [&_svg]:text-[#e3c995]"
           >
             <User />
             <span className="truncate">{user.email ?? userLabel}</span>
@@ -158,7 +158,7 @@ export default function AuthSessionLinks() {
         <DropdownMenuGroup>
           <DropdownMenuItem
             render={<Link href={DEFAULT_USER_DASHBOARD_PATH} />}
-            className="text-slate-200 transition hover:bg-[#d8bb82]/12 hover:text-[#e3c995] focus:bg-[#d8bb82]/12 focus:text-[#e3c995] [&_svg]:text-[#e3c995]"
+            className="theme-text transition hover:bg-[#d8bb82]/12 hover:text-[#e3c995] focus:bg-[#d8bb82]/12 focus:text-[#e3c995] [&_svg]:text-[#e3c995]"
           >
             <LayoutDashboard />
             User dashboard
@@ -166,7 +166,7 @@ export default function AuthSessionLinks() {
           {userIsAdmin ? (
             <DropdownMenuItem
               render={<Link href={ADMIN_DASHBOARD_PATH} />}
-              className="text-slate-200 transition hover:bg-[#d8bb82]/12 hover:text-[#e3c995] focus:bg-[#d8bb82]/12 focus:text-[#e3c995] [&_svg]:text-[#e3c995]"
+              className="theme-text transition hover:bg-[#d8bb82]/12 hover:text-[#e3c995] focus:bg-[#d8bb82]/12 focus:text-[#e3c995] [&_svg]:text-[#e3c995]"
             >
               <Shield />
               Admin dashboard

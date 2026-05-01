@@ -49,23 +49,23 @@ export default async function ProductsPage() {
     <>
       <Header />
       <main
-        className={`${poppins.className} min-h-screen overflow-hidden bg-[#06131d] text-white`}
+        className={`${poppins.className} theme-page min-h-screen overflow-hidden`}
       >
         <section className="relative px-4 pb-24 pt-32 sm:px-6 sm:pt-36 lg:px-8">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(8,73,66,0.18),_transparent_28%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(216,187,130,0.12),_transparent_28%)] dark:bg-[radial-gradient(circle_at_top,_rgba(8,73,66,0.18),_transparent_28%)]" />
           <div className="relative mx-auto max-w-7xl">
-            <div className="mb-10 flex flex-col gap-4 border-b border-white/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
+            <div className="theme-border mb-10 flex flex-col gap-4 border-b pb-6 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[#997240]">
                   Current Collection
                 </p>
                 <h2
-                  className={`${montserrat.className} mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl`}
+                  className={`${montserrat.className} theme-heading mt-3 text-3xl font-semibold tracking-tight sm:text-4xl`}
                 >
                   Available perfumes
                 </h2>
               </div>
-              <p className="text-sm leading-6 text-slate-400 sm:max-w-sm sm:text-right">
+              <p className="theme-muted text-sm leading-6 sm:max-w-sm sm:text-right">
                 {productsWithFavoriteState.length} fragrance
                 {productsWithFavoriteState.length === 1 ? "" : "s"} ready to
                 browse.
@@ -79,7 +79,7 @@ export default async function ProductsPage() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-[2rem] border border-white/10 bg-white/5 px-6 py-10 text-sm leading-7 text-slate-300 backdrop-blur">
+              <div className="theme-panel rounded-[2rem] border px-6 py-10 text-sm leading-7 theme-muted backdrop-blur">
                 Products will appear here when active fragrances are available
                 in the catalog.
               </div>

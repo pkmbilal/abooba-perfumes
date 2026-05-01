@@ -67,7 +67,7 @@ export default async function AdminProductsPage() {
       <>
         <Header />
       <main
-        className={`${poppins.className} min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_18%_12%,rgba(12,109,96,0.24),transparent_32%),radial-gradient(circle_at_88%_4%,rgba(216,187,130,0.14),transparent_28%),linear-gradient(180deg,#07131d_0%,#06131d_64%,#081119_100%)] px-4 pb-8 pt-28 text-white sm:px-6 sm:pb-10 sm:pt-32 lg:px-8`}
+        className={`${poppins.className} theme-page min-h-[calc(100vh-10rem)] px-4 pb-8 pt-28 sm:px-6 sm:pb-10 sm:pt-32 lg:px-8`}
       >
         <section className="mx-auto max-w-6xl rounded-[2rem] border border-rose-300/30 bg-white/6 p-6 shadow-[0_28px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur">
             <p className="text-sm font-semibold text-rose-700">
@@ -84,21 +84,21 @@ export default async function AdminProductsPage() {
     <>
       <Header />
       <main
-        className={`${poppins.className} min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_18%_12%,rgba(12,109,96,0.24),transparent_32%),radial-gradient(circle_at_88%_4%,rgba(216,187,130,0.14),transparent_28%),linear-gradient(180deg,#07131d_0%,#06131d_64%,#081119_100%)] px-4 pb-8 pt-28 text-white sm:px-6 sm:pb-10 sm:pt-32 lg:px-8`}
+        className={`${poppins.className} theme-page min-h-[calc(100vh-10rem)] px-4 pb-8 pt-28 sm:px-6 sm:pb-10 sm:pt-32 lg:px-8`}
       >
         <section className="mx-auto max-w-7xl">
-          <div className="rounded-[2rem] border border-white/10 bg-white/6 p-5 shadow-[0_28px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur sm:p-8">
-            <div className="flex flex-col gap-5 border-b border-white/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="theme-panel rounded-[2rem] border p-5 backdrop-blur sm:p-8">
+            <div className="theme-border flex flex-col gap-5 border-b pb-6 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-3xl">
                 <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[#d8bb82]">
                   Admin dashboard
                 </p>
                 <h1
-                  className={`${montserrat.className} mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl`}
+                  className={`${montserrat.className} theme-heading mt-4 text-3xl font-semibold tracking-tight sm:text-4xl`}
                 >
                   Product management
                 </h1>
-                <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+                <p className="theme-muted mt-4 max-w-2xl text-sm leading-7 sm:text-base">
                   Add, edit, publish, and remove products from your fragrance
                   catalog without leaving the app.
                 </p>
@@ -108,29 +108,29 @@ export default async function AdminProductsPage() {
             </div>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+              <div className="theme-chip rounded-[1.6rem] border p-5">
+                <p className="theme-muted text-xs font-semibold uppercase tracking-[0.28em]">
                   Total products
                 </p>
-                <p className="mt-3 text-3xl font-semibold tracking-tight text-white">
+                <p className="theme-heading mt-3 text-3xl font-semibold tracking-tight">
                   {products?.length ?? 0}
                 </p>
               </div>
 
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+              <div className="theme-chip rounded-[1.6rem] border p-5">
+                <p className="theme-muted text-xs font-semibold uppercase tracking-[0.28em]">
                   Active listings
                 </p>
-                <p className="mt-3 text-3xl font-semibold tracking-tight text-white">
+                <p className="theme-heading mt-3 text-3xl font-semibold tracking-tight">
                   {products?.filter((product) => product.is_active).length ?? 0}
                 </p>
               </div>
 
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+              <div className="theme-chip rounded-[1.6rem] border p-5">
+                <p className="theme-muted text-xs font-semibold uppercase tracking-[0.28em]">
                   Featured products
                 </p>
-                <p className="mt-3 text-3xl font-semibold tracking-tight text-white">
+                <p className="theme-heading mt-3 text-3xl font-semibold tracking-tight">
                   {products?.filter((product) => product.is_featured).length ?? 0}
                 </p>
               </div>
@@ -144,7 +144,7 @@ export default async function AdminProductsPage() {
                   return (
                     <article
                       key={product.id}
-                      className="grid gap-5 rounded-[1.75rem] border border-white/10 bg-white/6 p-5 shadow-[0_24px_80px_-60px_rgba(0,0,0,0.85)] lg:grid-cols-[180px_minmax(0,1fr)]"
+                      className="theme-chip grid gap-5 rounded-[1.75rem] border p-5 lg:grid-cols-[180px_minmax(0,1fr)]"
                     >
                       <div className="overflow-hidden rounded-[1.5rem] border border-stone-200 bg-[radial-gradient(circle_at_top,_rgba(15,118,110,0.28),_transparent_46%),linear-gradient(135deg,_#134e4a_0%,_#0c0a09_60%,_#1c1917_100%)]">
                         <div className="relative aspect-[4/5]">
@@ -180,15 +180,15 @@ export default async function AdminProductsPage() {
                               )}
                             </div>
 
-                            <h2 className="mt-4 text-2xl font-semibold tracking-tight text-white">
+                            <h2 className="theme-heading mt-4 text-2xl font-semibold tracking-tight">
                               {product.name}
                             </h2>
-                            <p className="mt-2 text-sm leading-7 text-slate-300">
+                            <p className="theme-muted mt-2 text-sm leading-7">
                               {product.short_description ||
                                 "No short description added yet."}
                             </p>
 
-                            <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-300">
+                            <div className="theme-muted mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm">
                               <p>
                                 <span className="font-semibold text-white">Slug:</span>{" "}
                                 {product.slug}
@@ -225,11 +225,11 @@ export default async function AdminProductsPage() {
                   );
                 })
               ) : (
-                <div className="rounded-[1.75rem] border border-dashed border-white/20 bg-white/6 px-6 py-10 text-center">
-                  <p className="text-lg font-semibold text-white">
+                <div className="theme-panel rounded-[1.75rem] border border-dashed px-6 py-10 text-center">
+                  <p className="theme-heading text-lg font-semibold">
                     No products yet
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-slate-300">
+                  <p className="theme-muted mt-3 text-sm leading-7">
                     Start by adding your first fragrance to the admin catalog.
                   </p>
                   <div className="mt-6 flex justify-center">

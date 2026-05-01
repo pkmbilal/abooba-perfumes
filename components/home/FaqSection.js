@@ -30,10 +30,10 @@ export default function FaqSection() {
                   setOpenQuestion("");
                 }
               }}
-              className="group rounded-[1.6rem] border border-white/10 bg-white/6 p-6 shadow-[0_22px_90px_-62px_rgba(0,0,0,0.9)] backdrop-blur"
+              className="theme-panel group rounded-[1.6rem] border p-6 backdrop-blur"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left">
-                <span className="text-lg font-semibold text-white">
+                <span className="theme-heading text-lg font-semibold">
                   {faq.question}
                 </span>
                 <Box
@@ -41,7 +41,7 @@ export default function FaqSection() {
                   size={18}
                 />
               </summary>
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">
+              <p className="theme-muted mt-4 max-w-3xl text-sm leading-7">
                 {faq.answer}
               </p>
             </details>

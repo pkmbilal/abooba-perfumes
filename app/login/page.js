@@ -25,7 +25,7 @@ export default async function LoginPage({ searchParams }) {
     <>
       <Header />
       <main
-        className={`${poppins.className} flex min-h-[calc(100vh-10rem)] items-center justify-center bg-[radial-gradient(circle_at_18%_12%,rgba(12,109,96,0.24),transparent_32%),radial-gradient(circle_at_88%_4%,rgba(216,187,130,0.14),transparent_28%),linear-gradient(180deg,#07131d_0%,#06131d_64%,#081119_100%)] px-6 pb-16 pt-28 text-white sm:pt-32`}
+        className={`${poppins.className} theme-page flex min-h-[calc(100vh-10rem)] items-center justify-center px-6 pb-16 pt-28 sm:pt-32`}
       >
         <AuthForm mode="login" errorCode={searchParams?.error} />
       </main>

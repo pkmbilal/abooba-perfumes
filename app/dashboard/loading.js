@@ -14,7 +14,7 @@ function LoadingCard() {
 
 export default function DashboardLoading() {
   return (
-    <main className="min-h-[calc(100vh-10rem)] bg-[radial-gradient(circle_at_18%_12%,rgba(12,109,96,0.24),transparent_32%),radial-gradient(circle_at_88%_4%,rgba(216,187,130,0.14),transparent_28%),linear-gradient(180deg,#07131d_0%,#06131d_64%,#081119_100%)] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+    <main className="theme-page min-h-[calc(100vh-10rem)] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
       <section className="mx-auto max-w-6xl">
         <div className="animate-pulse rounded-[2rem] border border-white/10 bg-white/6 p-6 shadow-[0_28px_100px_-60px_rgba(0,0,0,0.9)] backdrop-blur sm:p-8">
           <div className="h-3 w-32 rounded-full bg-white/15" />

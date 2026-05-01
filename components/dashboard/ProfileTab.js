@@ -4,16 +4,16 @@ import { Cake, Image as ImageIcon, Mail, Phone, UserRound, VenusAndMars } from "
 
 function ProfileField({ icon: Icon, label, value }) {
   return (
-    <article className="rounded-[1.5rem] border border-white/10 bg-white/6 p-5">
+    <article className="theme-chip rounded-[1.5rem] border p-5">
       <div className="flex items-center gap-3">
         <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#d8bb82] text-[#0f1720] shadow-sm">
           <Icon size={18} />
         </span>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-slate-400">
+          <p className="theme-muted text-xs font-semibold uppercase tracking-[0.26em]">
             {label}
           </p>
-          <p className="mt-2 text-base font-medium text-white">{value}</p>
+          <p className="theme-heading mt-2 text-base font-medium">{value}</p>
         </div>
       </div>
     </article>
@@ -26,7 +26,7 @@ export default function ProfileTab({
   updateProfileAction,
 }) {
   return (
-    <section className="rounded-[1.75rem] border border-white/10 bg-white/6 p-6 shadow-[0_24px_80px_-60px_rgba(0,0,0,0.85)] sm:p-8">
+    <section className="theme-panel rounded-[1.75rem] border p-6 sm:p-8">
       <DashboardSectionHeader
         eyebrow="Profile"
         title="Your account details"
@@ -68,8 +68,8 @@ export default function ProfileTab({
         />
       </div>
 
-      <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/6 p-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.26em] text-slate-400">
+      <div className="theme-chip mt-6 rounded-[1.5rem] border p-5">
+        <p className="theme-muted text-xs font-semibold uppercase tracking-[0.26em]">
           Account status
         </p>
         <div className="mt-4 flex flex-wrap items-center gap-3">
