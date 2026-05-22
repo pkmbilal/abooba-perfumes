@@ -18,20 +18,24 @@ export const metadata = {
 };
 
 async function getBestSellerProducts() {
-  const supabase = await createSupabaseServerClient();
-  const { data: products, error } = await supabase
-    .from("products")
-    .select("*, product_images(image_url, alt_text, is_primary, sort_order)")
-    .eq("is_active", true)
-    .order("is_featured", { ascending: false })
-    .order("created_at", { ascending: false })
-    .limit(4);
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data: products, error } = await supabase
+      .from("products")
+      .select("*, product_images(image_url, alt_text, is_primary, sort_order)")
+      .eq("is_active", true)
+      .order("is_featured", { ascending: false })
+      .order("created_at", { ascending: false })
+      .limit(4);
 
-  if (error) {
+    if (error) {
+      return [];
+    }
+
+    return products ?? [];
+  } catch {
     return [];
   }
-
-  return products ?? [];
 }
 
 export default async function Home() {

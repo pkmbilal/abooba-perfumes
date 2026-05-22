@@ -1,14 +1,22 @@
 /** @type {import('next').NextConfig} */
+const supabaseImageHostname = process.env.NEXT_PUBLIC_SUPABASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname
+  : "";
+
 const nextConfig = {
   reactCompiler: true,
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "hhasvchupwqdutudqkwv.supabase.co",
-        port: "",
-        pathname: "/storage/v1/object/public/product-images/**",
-      },
+      ...(supabaseImageHostname
+        ? [
+            {
+              protocol: "https",
+              hostname: supabaseImageHostname,
+              port: "",
+              pathname: "/storage/v1/object/public/product-images/**",
+            },
+          ]
+        : []),
       {
         protocol: "https",
         hostname: "images.unsplash.com",

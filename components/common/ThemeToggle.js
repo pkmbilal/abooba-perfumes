@@ -13,16 +13,15 @@ function applyTheme(theme) {
 }
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") {
+      return "dark";
+    }
 
-  useEffect(() => {
-    const savedTheme =
-      window.localStorage.getItem(THEME_STORAGE_KEY) === "light"
-        ? "light"
-        : "dark";
-
-    setTheme(savedTheme);
-  }, []);
+    return window.localStorage.getItem(THEME_STORAGE_KEY) === "light"
+      ? "light"
+      : "dark";
+  });
 
   useEffect(() => {
     applyTheme(theme);

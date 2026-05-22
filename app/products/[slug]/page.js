@@ -43,43 +43,56 @@ function DetailSection({ label, value }) {
 
 export async function generateMetadata(props) {
   const { slug } = await props.params;
-  const supabase = await createSupabaseServerClient();
+  try {
+    const supabase = await createSupabaseServerClient();
 
-  const { data: product } = await supabase
-    .from("products")
-    .select("name, short_description")
-    .eq("slug", slug)
-    .maybeSingle();
+    const { data: product } = await supabase
+      .from("products")
+      .select("name, short_description")
+      .eq("slug", slug)
+      .maybeSingle();
 
-  if (!product) {
+    if (!product) {
+      return {
+        title: "Product not found",
+      };
+    }
+
     return {
-      title: "Product not found",
+      title: `${product.name} | Abooba Perfumes`,
+      description:
+        product.short_description ??
+        "Discover fragrance details from the Abooba Perfumes collection.",
+    };
+  } catch {
+    return {
+      title: "Product | Abooba Perfumes",
+      description: "Discover fragrance details from the Abooba Perfumes collection.",
     };
   }
-
-  return {
-    title: `${product.name} | Abooba Perfumes`,
-    description:
-      product.short_description ??
-      "Discover fragrance details from the Abooba Perfumes collection.",
-  };
 }
 
 export default async function ProductDetailsPage(props) {
   const { slug } = await props.params;
-  const supabase = await createSupabaseServerClient();
+  let product = null;
 
-  const { data: product, error } = await supabase
-    .from("products")
-    .select(
-      "*, product_images(image_url, alt_text, is_primary, sort_order)",
-    )
-    .eq("slug", slug)
-    .eq("is_active", true)
-    .maybeSingle();
+  try {
+    const supabase = await createSupabaseServerClient();
 
-  if (error) {
-    return <div>Failed to load product: {error.message}</div>;
+    const { data, error } = await supabase
+      .from("products")
+      .select(
+        "*, product_images(image_url, alt_text, is_primary, sort_order)",
+      )
+      .eq("slug", slug)
+      .eq("is_active", true)
+      .maybeSingle();
+
+    if (!error) {
+      product = data;
+    }
+  } catch {
+    product = null;
   }
 
   if (!product) {

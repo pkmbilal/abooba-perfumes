@@ -3,10 +3,18 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getPostAuthRedirectPath } from "@/lib/auth/user-role";
 
 export default async function AuthRedirectPage() {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let user = null;
+
+  try {
+    const supabase = await createSupabaseServerClient();
+    const {
+      data: { user: authUser },
+    } = await supabase.auth.getUser();
+
+    user = authUser;
+  } catch {
+    user = null;
+  }
 
   if (!user) {
     redirect("/login");
