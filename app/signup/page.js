@@ -12,10 +12,18 @@ export const metadata = {
 };
 
 export default async function SignupPage() {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let user = null;
+
+  try {
+    const supabase = await createSupabaseServerClient();
+    const {
+      data: { user: authUser },
+    } = await supabase.auth.getUser();
+
+    user = authUser;
+  } catch {
+    user = null;
+  }
 
   if (user) {
     redirect(getPostAuthRedirectPath(user));

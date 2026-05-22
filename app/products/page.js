@@ -11,29 +11,41 @@ export const metadata = {
 };
 
 export default async function ProductsPage() {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let products = [];
+  let favorites = [];
 
-  const [{ data: products, error }, { data: favorites }] = await Promise.all([
-    supabase
-      .from("products")
-      .select(
-        "*, product_images(image_url, alt_text, is_primary, sort_order)",
-      )
-      .eq("is_active", true)
-      .order("created_at", { ascending: false }),
-    user
-      ? supabase
-          .from("favorites")
-          .select("product_id")
-          .eq("user_id", user.id)
-      : Promise.resolve({ data: [] }),
-  ]);
+  try {
+    const supabase = await createSupabaseServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  if (error) {
-    return <div>Failed to load products: {error.message}</div>;
+    const [
+      { data: productData, error },
+      { data: favoriteData },
+    ] = await Promise.all([
+      supabase
+        .from("products")
+        .select(
+          "*, product_images(image_url, alt_text, is_primary, sort_order)",
+        )
+        .eq("is_active", true)
+        .order("created_at", { ascending: false }),
+      user
+        ? supabase
+            .from("favorites")
+            .select("product_id")
+            .eq("user_id", user.id)
+        : Promise.resolve({ data: [] }),
+    ]);
+
+    if (!error) {
+      products = productData ?? [];
+      favorites = favoriteData ?? [];
+    }
+  } catch {
+    products = [];
+    favorites = [];
   }
 
   const favoriteProductIds = new Set(

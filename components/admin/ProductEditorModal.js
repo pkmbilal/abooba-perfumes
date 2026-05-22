@@ -122,7 +122,6 @@ function OpenButton({ isEditing, onClick }) {
 
 export default function ProductEditorModal({ product, saveProductAction }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [state, formAction] = useActionState(saveProductAction, INITIAL_STATE);
   const previousStatusRef = useRef(state.status);
   const isEditing = Boolean(product?.id);
@@ -144,10 +143,6 @@ export default function ProductEditorModal({ product, saveProductAction }) {
 
     previousStatusRef.current = state.status;
   }, [isOpen, state.status]);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -172,7 +167,7 @@ export default function ProductEditorModal({ product, saveProductAction }) {
   }, [isOpen]);
 
   const modalContent =
-    isOpen && isMounted
+    isOpen
       ? createPortal(
           <div className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-6">
             <button
