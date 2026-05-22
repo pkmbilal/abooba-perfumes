@@ -1,8 +1,16 @@
-/** @type {import('next').NextConfig} */
-const supabaseImageHostname = process.env.NEXT_PUBLIC_SUPABASE_URL
-  ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname
-  : "";
+function getSupabaseImageHostname() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 
+  if (!supabaseUrl || !URL.canParse(supabaseUrl)) {
+    return "";
+  }
+
+  return new URL(supabaseUrl).hostname;
+}
+
+const supabaseImageHostname = getSupabaseImageHostname();
+
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactCompiler: true,
   images: {
