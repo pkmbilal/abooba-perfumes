@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Box } from "lucide-react";
 import { faqs } from "./home-data";
 import SectionHeading from "./SectionHeading";
@@ -19,35 +19,69 @@ export default function FaqSection() {
         />
 
         <div className="mt-10 flex flex-col gap-4">
-          {faqs.map((faq) => (
-            <details
-              key={faq.question}
-              open={openQuestion === faq.question}
-              onToggle={(event) => {
-                if (event.currentTarget.open) {
-                  setOpenQuestion(faq.question);
-                } else if (openQuestion === faq.question) {
-                  setOpenQuestion("");
+          {faqs.map((faq) => {
+            const isOpen = openQuestion === faq.question;
+
+            return (
+              <FaqItem
+                key={faq.question}
+                faq={faq}
+                isOpen={isOpen}
+                onToggle={() =>
+                  setOpenQuestion((currentQuestion) =>
+                    currentQuestion === faq.question ? "" : faq.question,
+                  )
                 }
-              }}
-              className="theme-panel group rounded-[1.6rem] border p-6 backdrop-blur"
-            >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left">
-                <span className="theme-heading text-lg font-semibold">
-                  {faq.question}
-                </span>
-                <Box
-                  className="shrink-0 text-[#d8bb82] transition group-open:rotate-45"
-                  size={18}
-                />
-              </summary>
-              <p className="theme-muted mt-4 max-w-3xl text-sm leading-7">
-                {faq.answer}
-              </p>
-            </details>
-          ))}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
+  );
+}
+
+function FaqItem({ faq, isOpen, onToggle }) {
+  const answerRef = useRef(null);
+  const answerId = `faq-answer-${faq.question
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")}`;
+
+  return (
+    <div className="theme-panel rounded-[1.6rem] border p-6 backdrop-blur">
+      <button
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={answerId}
+        onClick={onToggle}
+        className="flex w-full cursor-pointer items-center justify-between gap-4 text-left"
+      >
+        <span className="theme-heading text-lg font-semibold">
+          {faq.question}
+        </span>
+        <Box
+          className={`shrink-0 text-[#d8bb82] transition-transform duration-300 ease-out ${
+            isOpen ? "rotate-45" : ""
+          }`}
+          size={18}
+        />
+      </button>
+      <div
+        id={answerId}
+        className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
+          isOpen ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          maxHeight: isOpen ? `${answerRef.current?.scrollHeight ?? 0}px` : "0px",
+        }}
+      >
+        <div ref={answerRef} className="pt-4">
+          <p className="theme-muted max-w-3xl text-sm leading-7">
+            {faq.answer}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

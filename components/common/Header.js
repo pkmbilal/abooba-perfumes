@@ -50,7 +50,7 @@ export default function Header() {
           <div className="flex flex-shrink-0 items-center">
             <Link href="/" className="flex items-center gap-2">
               <Image
-                src="/logo.JPG"
+                src="/logo.webp"
                 alt="Abooba Perfumes"
                 width={72}
                 height={72}

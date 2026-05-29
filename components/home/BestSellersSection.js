@@ -65,27 +65,27 @@ export default function BestSellersSection({ products = [] }) {
                   >
                     {product.name}
                   </h3>
-                  <div className="mt-6 flex items-end justify-between gap-4">
-                    <div>
+                  <div className="mt-6 flex flex-col gap-4">
+                    <div className="min-w-0">
                       <p className="theme-muted text-xs uppercase tracking-[0.26em]">
                         Price
                       </p>
-                      <p className="theme-heading mt-2 text-2xl font-semibold">
+                      <p className="theme-heading mt-2 break-words text-2xl font-semibold leading-tight">
                         {formatPrice(product.price)}
                       </p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="grid grid-cols-2 gap-2">
                       <Link
                         href={productHref}
-                        className="theme-chip rounded-full border px-4 py-2 text-sm font-medium transition hover:border-[#d8bb82]/35"
+                        className="theme-chip rounded-full border px-4 py-2 text-center text-sm font-medium transition hover:border-[#d8bb82]/35"
                       >
                         View
                       </Link>
                       <Link
                         href={productHref}
-                        className="rounded-full bg-[linear-gradient(135deg,#d8bb82_0%,#b88942_100%)] px-4 py-2 text-sm font-semibold text-[#0f1720] transition hover:brightness-105"
+                        className="rounded-full bg-[linear-gradient(135deg,#d8bb82_0%,#b88942_100%)] px-4 py-2 text-center text-sm font-semibold text-[#0f1720] transition hover:brightness-105"
                       >
-                        Add
+                        Add to Cart
                       </Link>
                     </div>
                   </div>
