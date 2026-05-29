@@ -1,13 +1,23 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="theme-footer theme-border border-t">
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_0.8fr] lg:px-8">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#d8bb82]">
-            Abooba Perfumes
-          </p>
+          <Link href="/" className="inline-flex items-center gap-3">
+            <Image
+              src="/logo.webp"
+              alt="Abooba Perfumes"
+              width={56}
+              height={56}
+              className="h-10 w-auto object-contain"
+            />
+            <span className="text-xs font-semibold uppercase tracking-[0.35em] text-[#d8bb82]">
+              Abooba Perfumes
+            </span>
+          </Link>
           <h2 className="theme-heading mt-3 text-2xl font-semibold tracking-tight">
             Premium perfumes curated for everyday elegance.
           </h2>
